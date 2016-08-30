@@ -1,0 +1,65 @@
+@import "sass/partial/_utils";
+
+.ico {
+
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 0%;
+  left:-15%;
+  &:not(.rotate) {
+      transform: translateY(13%) translateX(30%) rotate(-45deg)!important;
+      .st-arrow {
+      fill: $minorColor;
+    }
+  }
+  &.rotate{
+    transform: translateY(-13%) translateX(30%) rotate(225deg)!important;
+    .st-arrow {
+      fill: $plusColor;
+    }
+  }
+  .svg {
+    z-index: 9;
+    position: relative;
+  }
+}
+
+@mixin scrolly {
+  $animation-name: scrolly;
+  animation-name: $animation-name;
+
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+.ui:first-child .ico .st-arrow  {
+  -webkit-animation: scrolly 3s cubic-bezier(0.77, 0, 0.175, 1) forwards infinite;
+          animation: scrolly 3s cubic-bezier(0.77, 0, 0.175, 1) forwards infinite;
+  -webkit-perspective: 9000px;
+          perspective: 9000px;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  @include scrolly {
+    0% {
+      transform: translate3d(0, -150%, 0) rotateX(90deg) scale(0.5) skewX(3deg);
+    }
+    30% {
+      transform: translate3d(0, 0, 0) rotateX(0deg) scale(1) skewX(0deg);
+    }
+    70% {
+      transform: translate3d(0, 0, 0) rotateX(0deg) scale(1) skewX(0deg);
+    }
+    95% {
+      transform: translate3d(0, 50%, 0) rotateX(-90deg) scale(0.5) skewX(-3deg);
+    }
+    100% {
+      transform: translate3d(0, 50%, 0) rotateX(-90deg) scale(0.5) skewX(-3deg);
+    }
+  }
+}
