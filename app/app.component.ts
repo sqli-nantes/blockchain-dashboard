@@ -10,18 +10,7 @@ import { Observable }     from 'rxjs/Observable';
 import { ReflectiveInjector } from '@angular/core';
 import { AppService} from './app.service'
 
-import { web3 } from './web3IPCExtension';
-
-var injector = ReflectiveInjector.resolveAndCreate([
-  Transaction,
-  User
-]);
-
-var transaction = injector.get(Transaction);
-var user = injector.get(User);
-
-declare var module: { id: string };
-
+var web3 = require('./web3IPCExtension').web3;
 declare let TweenMax: any; 
 
 @Component({
@@ -35,7 +24,6 @@ export class AppComponent implements OnInit{
 	senderName:string;
 	receiverName:string;
 	transactions = [];
-
 	constructor(
 		private appService:AppService,
 		private dom:BrowserDomAdapter
@@ -43,9 +31,15 @@ export class AppComponent implements OnInit{
 
 
 	ngOnInit(){  
+    this.blockchainConnect();
 		this.getUsers();
     console.log(web3);
+    setInterval(()=>this.addStat(),5000);
 	}
+
+  blockchainConnect(){
+    
+  }
 
 	getUsers() : Promise<any> {
 		return this.appService.getUsers().then(response=>{
@@ -55,7 +49,7 @@ export class AppComponent implements OnInit{
 
 	addStat(): void { 
 
-    TweenMax.to(".ui:first-child", 0.6, {opacity:0.9, scale:0.6});
+    TweenMax.to(".ui:first-child", 0.6, {opacity:0.9, scale:0.8});
   
     this.addTransaction();    
 
@@ -65,18 +59,23 @@ export class AppComponent implements OnInit{
     
 	}
 
-  randomTransac(){    
-    var uS={},uR={};
-    do {
-      uS=this.users[Math.floor(Math.random() * 5)]
-      uR=this.users[Math.floor(Math.random() * 5)]
-    } while (uS===uR);
-    return {sender:uS,receiver:uR,amount:Math.floor(Math.random() * 150)}
-  }
-
   addTransaction(){
     this.transactions.unshift(this.randomTransac());
   }
+
+  randomTransac(){    
+    var uS={},uR={};
+    do {
+      uS=this.users[this.random(5)]
+      uR=this.users[this.random(5)]
+    } while (uS===uR);
+    return {sender:uS,receiver:uR,amount:this.random(150)}
+  }
+
+  random(x:number){
+    return Math.floor(Math.random() * x)
+  }
+
 
 }
 

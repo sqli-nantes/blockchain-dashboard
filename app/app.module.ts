@@ -15,7 +15,7 @@ import { NameService } from './name.service'
 @NgModule({
   imports:      [ 
   	BrowserModule,
-  	HttpModule 
+  	HttpModule
   ],
   declarations: [ 
   	AppComponent,

@@ -54,7 +54,7 @@ var AppService = (function () {
     };
     AppService.prototype.getName = function (users) {
         for (var prop in users) {
-            if (!isNaN(prop)) {
+            if (!isNaN(parseFloat(prop))) {
                 users[prop]['name'] = this.ns.getNameByAddress(users[prop].address);
             }
         }

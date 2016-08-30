@@ -7,5 +7,5 @@ appSetting: string,
 }
 
 export const CONFIG: Config = {
-appSetting: "my application nsetting"
+appSetting: "my application setting"
 };

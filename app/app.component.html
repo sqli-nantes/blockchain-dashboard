@@ -1,9 +1,8 @@
-
 <div class='ui' *ngFor="let t of transactions">
     <div class="ui_box">     
       <h2>{{t.sender.name}}<br/><small>{{t.sender.address}}</small></h2>
       <div class="col-4">
-          <span class="up solde minor" style="right:0">{{t.sender.balance}} Ether</span>
+          <span class="up solde" style="right:0">{{t.sender.balance}} Ether</span>
       </div>
       <div class="col-4">
         <div class="ico animated"> 
@@ -11,15 +10,14 @@
         </div>
       </div>
       <div class="col-4">
-        <span class="transaction">- {{t.amount}} Ether</span>
-        <span class="down solde minor" style="left:0">{{t.sender.balance-t.amount}} Ether</span>
+        <span class="transaction t_sender">- {{t.amount}} Ether</span>
+        <span class="down solde" style="left:0">{{t.sender.balance-t.amount}} Ether</span>
       </div>
     </div>
-
     <div class="ui_box">     
       <h2>{{t.receiver.name}}<br/><small>{{t.receiver.address}}</small></h2>
       <div class="col-4">
-          <span class="down solde plus" style="right:0">{{t.receiver.balance}} Ether</span>
+          <span class="down solde" style="right:0">{{t.receiver.balance}} Ether</span>
       </div>
       <div class="col-4">
         <div class="ico animated rotate">   
@@ -27,9 +25,9 @@
         </div>
       </div>
       <div class="col-4">
-        <span class="transaction">+ {{t.amount}} Ether</span>
-        <span class="up solde plus" style="left:0">{{t.receiver.balance+t.amount}} Ether</span>
+        <span class="transaction t_receiver">+ {{t.amount}} Ether</span>
+        <span class="up solde" style="left:0">{{t.receiver.balance+t.amount}} Ether</span>
       </div>
     </div>
 </div>
-<img src='res/Ethereum.png' alt="ethereum" id="logo" (click)="addStat()"/>
+<div id="no_transac" *ngIf="transactions.length==0"><span>Pas de transactions</span></div>

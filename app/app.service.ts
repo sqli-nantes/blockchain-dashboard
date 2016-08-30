@@ -53,8 +53,8 @@ export class AppService {
   }
 
   getName(users:User[]): void{
-    for(var prop in users) {
-      if(!isNaN(prop)) {
+    for(let prop in users) {
+      if(!isNaN(parseFloat(prop))) {
         users[prop]['name']=this.ns.getNameByAddress(users[prop].address);
       }
     }

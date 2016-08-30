@@ -1,5 +1,6 @@
 var Web3 = require('web3');
 var web3 = new Web3();
+
 web3._extend({
     property: 'miner',
     methods: [
@@ -10,6 +11,7 @@ web3._extend({
             inputFormatter: [toIntVal],
             outputFormatter: toBoolVal
         }),
+
         new web3._extend.Method({
             name: 'stop',
             call: 'miner_stop',
@@ -17,6 +19,7 @@ web3._extend({
             inputFormatter: [toIntVal],
             outputFormatter: toBoolVal
         }),
+
         new web3._extend.Method({
             name: 'setEtherbase',
             call: 'miner_setEtherbase',
@@ -25,7 +28,8 @@ web3._extend({
             outputFormatter: toBoolVal
         })
     ]
-});
+})
+
 web3._extend({
     property: 'admin',
     methods: [
@@ -37,7 +41,8 @@ web3._extend({
             outputFormatter: toBoolVal
         })
     ]
-});
+})
+
 /*
 web3._extend({
     property: 'personal',
@@ -51,6 +56,7 @@ web3._extend({
         })
     ]
 }) */
+
 // Contract Methods
 /*web3._extend({
     property: 'eth',
@@ -64,19 +70,21 @@ web3._extend({
     ]
 
 }) */
+
 function toStringVal(val) {
     return String(val);
 }
+
 function toIntVal(val) {
     return parseInt(val);
 }
+
 function toBoolVal(val) {
     if (String(val) == 'true') {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
+
 exports.web3 = web3;
-//# sourceMappingURL=web3IPCExtension.js.map

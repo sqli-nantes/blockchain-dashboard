@@ -24,6 +24,7 @@
     "https":                      'node_modules/https',
     "punycode":                   'node_modules/punycode',
     "querystring":                'node_modules/querystring',
+    "q":                          'node_modules/q',
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
@@ -53,6 +54,7 @@
     'https':                      { defaultExtension: 'json',  main: 'package.json',    },
     'punycode':                   { defaultExtension: 'js',    main: 'punycode.js',    },
     'querystring':                { defaultExtension: 'js',    main: 'index.js',    },
+    'q':                          { defaultExtension: 'js',    main: 'q.js',    },
   };
   var ngPackageNames = [
     'common',
