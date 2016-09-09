@@ -3,4 +3,11 @@ src/
 typings/
 *.map
 *.log
-
+karma.*
+protractor.*
+webpack.config.js
+karma-shim.*
+tsconfig.json
+tslint.json
+typedoc.json
+typings.json
