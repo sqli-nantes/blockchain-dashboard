@@ -1,0 +1,83 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?wwtxrs');
+  src:  url('../fonts/icomoon.eot?wwtxrs#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?wwtxrs') format('truetype'),
+    url('../fonts/icomoon.woff?wwtxrs') format('woff'),
+    url('../fonts/icomoon.svg?wwtxrs#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body,html{
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  text-align: center;
+}
+
+.currencies{
+  position: fixed;
+  right: 4vw;
+  top: 5vh;
+  color: white;
+  font-size: xx-large;
+  text-align: right;
+}
+
+body {
+  background: #343535 fixed;
+  -webkit-font-smoothing: antialiased;
+          font-smoothing: antialiased;
+  overflow-x: hidden;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position:-400px;
+  background-image: url('../img/ethereum.png')
+}
+
+h1{
+  transform: rotate(90deg) translate(50vh, -10vw);
+  color: #828384;
+  padding: 1vw 0;
+  margin: 0;
+  font-size: 6vw;
+  position: fixed;
+  display: inline-block;
+  right: -40px;
+}
+
+h1>span{
+  transform: rotate(-90deg) translate(2.4vw, -8.3vw);
+  font-size: 0.2em !important;
+  font-weight: bold;
+  display: inline-block;
+  color: #c99d66;
+}
+
+img {
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  z-index: -1;
+}   
+
+#ui_container{
+  height: 100%;
+  margin:5% 0;
+}
+
+.solde{
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; 
+}
