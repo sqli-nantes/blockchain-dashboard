@@ -4,7 +4,6 @@ typings/
 *.log
 karma.*
 protractor.*
-webpack.config.js
 karma-shim.*
 tsconfig.json
 tslint.json
