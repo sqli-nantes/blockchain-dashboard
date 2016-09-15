@@ -1,4 +1,5 @@
-src/
+src/*.map
+src/*.ts
 typings/
 *.map
 *.log
@@ -9,3 +10,4 @@ tsconfig.json
 tslint.json
 typedoc.json
 typings.json
+dist/

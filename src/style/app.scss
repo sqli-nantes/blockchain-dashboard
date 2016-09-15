@@ -1,0 +1,48 @@
+body {
+  &,html{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    text-align: center;    
+  }
+  background: $bodyBackColor fixed;
+  font-family: $fontBody;
+  -webkit-font-smoothing: antialiased;
+          font-smoothing: antialiased;
+  overflow-x: hidden;
+  background-image: url('../public/img/ethereum.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position:-400px;
+
+  h1{
+    font-family: $fontTitle;
+    transform: rotate(90deg) translate(50vh, -10vw);
+    color: #828384;
+    padding: 1vw 0;
+    margin: 0;
+    font-size: 6vw;
+    position: fixed;
+    display: inline-block;
+    right: 0;
+
+    span{
+      transform: rotate(-90deg) translate(45px, -157px);
+      font-size: 0.2em !important;
+      font-weight: bold;
+      display: inline-block;
+      color: #c99d66;
+    }
+  }
+
+  img{
+    margin-top: 50vh;
+    transform: translate(-50%,-50%);
+    position: fixed;
+  }   
+   
+  #ui_container{
+    height: 100%;
+    margin:5% 0;
+  }
+}

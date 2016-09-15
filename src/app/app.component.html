@@ -1,0 +1,10 @@
+
+<div class='ui' *ngFor="let t of transactions">
+	<div class="ui_box">  
+		<user-information [user]='t.sender' [amount]='t.amount' type="sender"></user-information>   
+	</div>
+	<div class="ui_box">  
+		<user-information [user]='t.receiver' [amount]='t.amount' type="receiver"></user-information>   
+	</div>
+</div><router-outlet></router-outlet>
+<div id="no_transac" *ngIf="transactions.length==0"><span>Pas de transactions</span></div>

@@ -1,0 +1,76 @@
+@import "./src/style/partial/_utils";
+
+h2{
+  font-family: $fontTitle;
+  color:$goldColor;
+  margin:0;
+  padding:10px;
+  padding-bottom:0;
+  font-size: 3.5em;
+  border-bottom: 1px solid $borderColor;
+  small{
+    color: $smallColor;
+    font-size: 0.4em;
+  }
+}
+
+
+.transac_box_sender{
+  #down{    
+    text-align: right;
+  }
+
+  #up{
+    text-align: left; 
+  }
+}
+
+.transac_box_receiver{
+  #down{    
+    text-align: left;
+  }
+
+  #up{
+    text-align: right; 
+  }
+}
+
+
+
+.transac_box {
+  height: 30vh;
+  width: 100%;
+  opacity: 0;
+
+  .line{
+    height:33.33%;
+
+    .solde {
+      font-weight: 700;
+      height: 100%;
+      line-height: 200%;
+      font-size: 3.5em;
+      white-space: nowrap;
+      display: inline-block;
+      color: #c99d66;
+      margin: 0 20px;
+    }
+  }
+}
+
+.transaction{
+  font-weight: 900;
+  font-size: 4.5em;
+  position: absolute;
+  display: inline-block;
+  transform: translate(3vw,-19vh);
+  white-space: nowrap;
+  opacity: 0;
+  &.t_sender{
+    color: $minorColor;
+  }
+
+  &.t_receiver{
+    color: $plusColor;
+  }
+}

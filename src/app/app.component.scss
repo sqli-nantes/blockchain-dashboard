@@ -1,0 +1,43 @@
+@import "./src/style/partial/_utils";
+
+  #no_transac{    
+    line-height: 99vh;
+    white-space: nowrap;
+    color: $smallColor;
+    font-size: 2.5em;
+    font-style: italic;
+  }
+
+  #logo{
+    position: fixed;
+    bottom:20px;
+    right: 20px;
+  }
+  
+  #ui_container{
+    height: 100%;
+    margin:5% 0;
+
+  }
+  
+  .ui {
+    width: 80vw;
+    height: 45vh;
+    margin: 5vh 10%;
+    color: white;
+    box-shadow: none;
+
+    &:not(:first-child){
+      opacity:0.6;
+    }
+
+  .ui_box {
+    width: 50%;
+    height: 100%;
+    position: relative;
+    float: left;
+    background: $uiBoxBackColor;
+    box-shadow: -1px 0px $borderColor;
+  }
+
+}

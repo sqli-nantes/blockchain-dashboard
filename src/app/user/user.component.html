@@ -1,0 +1,16 @@
+<h2>{{user.name}}<br/><small>{{user.address}}</small></h2>
+<div class='transac_box' [ngClass]="{transac_box_sender: type==='sender',transac_box_receiver: type==='receiver'}">
+	<div class="line" id="up">
+		<span *ngIf='type==="sender"' class="solde">{{previousSolde | numeralFormat: Currency}}</span>
+		<span *ngIf='type==="receiver"' class="solde">{{user.balance | numeralFormat: Currency}}</span>
+	</div>
+	<div class="line" id="arrow">
+		<arrow *ngIf='type==="sender"' rotate="false"></arrow>
+		<arrow *ngIf='type==="receiver"' rotate="true"></arrow>
+	</div>
+	<div class="line" id="down">
+		<span *ngIf='type==="sender"' class="down solde">{{user.balance | numeralFormat: Currency}}</span>
+		<span *ngIf='type==="receiver"' class="down solde">{{previousSolde | numeralFormat: Currency}}</span>
+	</div>
+</div>        
+<span class="transaction" [ngClass]="{t_sender: type==='sender',t_receiver: type==='receiver'}">{{type==="sender"? '-':'+'}}{{amount | numeralFormat: Currency}}</span>
