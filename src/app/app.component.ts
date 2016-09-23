@@ -6,14 +6,16 @@
 */
 
 // Import des librairies, service, ...
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from './class/User';
 import { Transaction } from './class/Transaction';
+
 
 import { AppService } from './app.service';
 
 import { ENODE } from './utils/enode.const';
 
+import * as _ from 'lodash';
 let web3 = require('./utils/web3IPCExtension').web3;
 
 // Effets d'animations GSAP avec TweenMax
@@ -30,7 +32,15 @@ declare let Sine: any;
 })
 
 export class AppComponent implements OnInit {
-  transactions = [];
+  transactions: Array<Transaction> = [];
+  time: Date;
+
+  users = [
+    {address:"0xdb3b05cdc78ea632cb3f6816f9c14109070cc3b4", name:"Choupette", balance:2000},
+    {address:"0xe9bd4d7c245f4b14388f2bc71a09b0264057c31e", name:"Jim", balance:2000},
+    {address:"0xe9bd4d7c245f4b14388f2bc71a09b0264057b54f", name:"Seraphin", balance:2000},
+  ];
+
 
   constructor(
     private appService: AppService
@@ -40,22 +50,14 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     // this.blockchainConnect();
     // this.blockchainFilter();
-    setInterval(() =>{
+    setInterval(() => {
       this.fakeTransaction();
-    }, 10000)
-    
+      this.time = new Date();
+    }, 10000);
   }
 
   fakeTransaction() {
-    let transac = {
-      from: '0xe9bd4d7c245f4b14388f2bc71a09b0264057c31e',
-      to: '0xdb3b05cdc78ea632cb3f6816f9c14109070cc3b4',
-      value : {
-        c : [ 500 ]
-      },
-      fake : true
-    }
-    this.addStat(this.parseTransac(transac));
+    this.addStat(this.randomTransac());
   }
 
   // Fonction de connection à la blockchain
@@ -91,24 +93,60 @@ export class AppComponent implements OnInit {
     sender = this.appService.parseObj({
       address: transac.from,
       name: '',
-      balance: transac.fake === true? 2000 : web3.eth.getBalance(transac.from).plus(2).toString(10)
+      balance: transac.fake === true ? 2000 : web3.eth.getBalance(transac.from).plus(2).toString(10)
     }, User);
 
     receiver = this.appService.parseObj({
       address: transac.to,
       name: '',
-      balance: transac.fake === true? 2000 : web3.eth.getBalance(transac.to).plus(2).toString(10)
+      balance: transac.fake === true ? 2000 : web3.eth.getBalance(transac.to).plus(2).toString(10)
     }, User);
 
-    this.appService.getName([sender, receiver]);
+    sender.name = this.appService.getName(sender);
+    receiver.name = this.appService.getName(receiver);
 
     transaction = this.appService.parseObj({
       sender: sender,
       receiver: receiver,
-      amount: transac.value.c[0]
+      amount: transac.value.c[0],
     }, Transaction);
 
     return transaction;
+  }
+
+  randomTransac(): any {
+    let sender: User;
+    let receiver: User;
+    let transaction;
+    let u1;
+    let u2;
+
+    do {
+      u1 = this.users[this.randomize(this.users.length)];
+      u2 = this.users[this.randomize(this.users.length)];
+    } while (u1 === u2);
+
+    sender = this.appService.parseObj(u1, User);
+
+    receiver = this.appService.parseObj(u2, User);
+
+    transaction = this.appService.parseObj({
+      sender: sender,
+      receiver: receiver,
+      amount: this.randomize(2000), 
+      date: new Date()
+    },Transaction);
+
+    transaction.sender.balance -= transaction.amount;
+    transaction.receiver.balance += transaction.amount;
+
+    let indexSender = _.findIndex(this.users,['address', transaction.sender.address]);
+    let indexReceiver = _.findIndex(this.users,['address', transaction.receiver.address]);
+
+    this.users[indexSender].balance = transaction.sender.balance;
+    this.users[indexReceiver].balance = transaction.receiver.balance;
+
+    return transaction;   
   }
 
   // Fonction d'animation de l'apparition d'une nouvelle transaction
@@ -126,9 +164,14 @@ export class AppComponent implements OnInit {
   transaction si le tableau dépasse les 5 valeurs */
   addTransaction (transaction: Transaction) {
     this.transactions.unshift(transaction);
+    this.newTransac.emit({ value: transaction });
 
     if (this.transactions.length >= 5) {
       this.transactions.pop();
     }
+  }
+
+  randomize(num: number): number {
+    return Math.floor(Math.random()*num);
   }
 }

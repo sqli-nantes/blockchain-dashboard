@@ -50,6 +50,7 @@ module.exports = function makeWebpackConfig() {
     'app': './src/main.ts' // our angular app
   };
 
+
   /**
    * Output
    * Reference: http://webpack.github.io/docs/configuration.html#output

@@ -1,0 +1,83 @@
+@import "./src/style/partial/_utils";
+
+#no_transac{    
+  line-height: 99vh;
+  white-space: nowrap;
+  color: $smallColor;
+  font-size: 2.5em;
+  font-style: italic;
+}
+
+#logo{
+  position: fixed;
+  bottom:20px;
+  right: 20px;
+}
+
+#ui_container{
+  height: 100%;
+  margin:5% 0;
+
+}
+
+.ui {
+  width: 70%;
+  height: 20vh;
+  margin: 5vh 20% 5vh 10%;
+  color: white;
+  box-shadow: none;
+  display: inline-block;
+  float: left;
+
+  &:not(:first-child){
+    opacity:0.6;
+  }
+
+  .ui_box {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    float: left;
+    background: $uiBoxBackColor;
+    box-shadow: -1px 0px $borderColor;
+
+    h2{
+      font-size: 4em;
+      color: white;
+      position: relative;
+      top: 50%;
+      transform: translateY(-116%);
+      width:33.33%;
+      float:left;
+      font-family: $fontTitle;
+    }
+    
+    #timestamp_transac {
+      display: inline-block;
+      position: absolute;
+      top: 5%;
+      right: 20px;
+      text-align: right;
+      width: 100px;
+    }
+
+    .amount{
+      position: absolute;
+      color: $goldColor;
+      text-align: center;
+      top: 2%;
+      width:100%;
+      font-size: 2.8em;
+      font-family: $fontBody;
+      font-weight: bold;
+    }
+
+    .left{
+      left:5%;
+    }
+
+    .right{
+      right:5%;
+    }
+  }
+}

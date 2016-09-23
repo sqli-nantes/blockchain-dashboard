@@ -3,13 +3,13 @@
 .ico {  
     margin: 0 auto;
     text-align: center;
-    width: 30%;
+    width: 80%;
     height: 30%;
     position: relative;
   &:not(.rotate) {
-    transform: translateY(-132%) translateX(-34%) rotate(-45deg) !important;
+    transform: translateY(-5%)  rotate(-90deg) !important;
     .st-arrow {
-      fill: $minorColor;
+      fill: #828384;
     }
   }
   &.rotate{

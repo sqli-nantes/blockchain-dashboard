@@ -1,0 +1,18 @@
+@import "src/style/partial/_utils";
+
+md-card {
+	padding:0;
+	background-color: rgba(255,255,255,0.2); 
+	margin:0 5%;
+	
+	.title-names {
+	    display: inline-block;
+	    width: 23.33%;
+	    padding: 5%;
+	    background-color: $darkGoldColor;
+	    margin-bottom: 20px;
+	}
+	graph{
+		height: 100%;
+	}
+}

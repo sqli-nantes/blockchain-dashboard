@@ -16,7 +16,7 @@ let Numeral = require('numeral');
 })
 
 export class UserComponent implements OnInit {
-  //récupération de l'utilisateur, du montant de la transac et du type (sender ou receiver)  
+  // Récupération de l'utilisateur, du montant de la transac et du type (sender ou receiver)  
   @Input() user: User;
   @Input() amount: number;
   @Input() type: string;
@@ -43,7 +43,7 @@ export class UserComponent implements OnInit {
     return currency
   */
   get Currency() {
-  	return this.currency;
+    return this.currency;
   }
 
 }

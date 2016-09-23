@@ -7,6 +7,7 @@ $minorColor : #F44336; // Red color for negative transaction
 $plusColor : rgb(79,165,132); // Green color for negative transaction
 $goldColor : rgb(201, 157, 102); // Gold color for transaction and name
 $smallColor : #828384; // color of sender's and receiver's address
+$darkGoldColor : rgb(155, 127, 72);
 
 /*Border colors*/
 $borderColor : rgba(255,255,255,0.1);
@@ -17,6 +18,6 @@ $bodyBackColor : #343535; //dark blue for the body
 
 /*Font of the app*/
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600);
-$fontBody : 'Source Sans Pro', sans-serif;
+$fontBody : 'Roboto', 'Source Sans Pro', sans-serif;
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,900);
 $fontTitle : 'Roboto','Source Sans Pro', sans-serif;

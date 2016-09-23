@@ -1,0 +1,12 @@
+<md-card md-theme-watch>
+  <md-card-content layout="row" layout-align="space-between">
+		<div *ngFor='let u of users' class='title-names'>{{u.name}}</div>
+		<div class="content">
+		  <div class="graph-container" style='height:70vh'>
+				<div style='height:33%' *ngFor="let user of users">
+					<graph [user]="user" [transactions]="transactions"></graph>
+				</div>
+			</div>
+		</div>
+  </md-card-content>
+</md-card>

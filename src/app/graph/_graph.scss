@@ -1,0 +1,7 @@
+.chart{
+	height: inherit
+}
+
+#chart_divEvolution{
+	@extend .chart;
+}

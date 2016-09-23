@@ -20,6 +20,7 @@ CURRENCIES['Nantes'] = {
     symbol: 'SoNantes'
   }
 };
+
 CURRENCIES['Ether'] = {
   delimiters: {
   thousands: ' ',
@@ -35,6 +36,7 @@ CURRENCIES['Ether'] = {
     symbol: 'Ether'
   }
 };
+
 CURRENCIES['Wei'] = {
   delimiters: {
   thousands: ' ',

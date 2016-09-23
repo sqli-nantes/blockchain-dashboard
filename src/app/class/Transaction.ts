@@ -6,4 +6,5 @@ export class Transaction {
     receiver: User;
     sender: User;
     amount: number;
+    time: Date;
 }

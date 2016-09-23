@@ -1,43 +1,17 @@
-@import "./src/style/partial/_utils";
+tab-graph{
+  width: 33.33%;
+  display: inline-block;
+  float:left;
+  height:80vh;
+  margin:10vh 0;
+  position: fixed;
+  left:0;
+  top:0;
+}
 
-  #no_transac{    
-    line-height: 99vh;
-    white-space: nowrap;
-    color: $smallColor;
-    font-size: 2.5em;
-    font-style: italic;
-  }
-
-  #logo{
-    position: fixed;
-    bottom:20px;
-    right: 20px;
-  }
-  
-  #ui_container{
-    height: 100%;
-    margin:5% 0;
-
-  }
-  
-  .ui {
-    width: 80vw;
-    height: 45vh;
-    margin: 5vh 10%;
-    color: white;
-    box-shadow: none;
-
-    &:not(:first-child){
-      opacity:0.6;
-    }
-
-  .ui_box {
-    width: 50%;
-    height: 100%;
-    position: relative;
-    float: left;
-    background: $uiBoxBackColor;
-    box-shadow: -1px 0px $borderColor;
-  }
-
+trans-list{
+  width: 66.66%;
+  display: inline-block;
+  margin-left: 33.33%;
+  float: left;
 }

@@ -1,6 +1,6 @@
 /*
 
-    Module permettant d'importer l'ensemble des composant, modules, pipes ... pour le lancement de l'appli
+    Module permettant d'importer l'ensemble des composants, modules, pipes ... pour le lancement de l'appli
     @author : Joël CHRABIE
 
 */
@@ -11,34 +11,37 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
-
-import { AboutComponent } from './about/about.component';
 import { ArrowComponent }  from './arrow/arrow.component';
+import { TabGraphComponent }  from './tabGraph/tabGraph.component';
+import { TransListComponent }  from './transactionList/transList.component';
+import { GraphComponent }  from './graph/graph.component';
 
 import { ApiService } from './shared';
-import { routing } from './app.routing';
 import { AppService } from './app.service';
 import { NameService } from './name/name.service';
 
 import { NumeralFormatPipe } from './user/user.pipe';
 
-
+import { MdButtonModule } from '@angular2-material/button';
+import { MdCardModule } from '@angular2-material/card';
+import { MdTabsModule } from '@angular2-material/tabs';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule,
-    routing
+    MdButtonModule,
+    MdCardModule,
+    MdTabsModule
   ],
   declarations: [
     AppComponent,
-    HomeComponent,
     ArrowComponent,
-    AboutComponent,
     UserComponent,
+    TabGraphComponent,
+    GraphComponent,
+    TransListComponent,
     NumeralFormatPipe
   ],
   providers: [

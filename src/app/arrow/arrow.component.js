@@ -1,3 +1,9 @@
+/*
+
+    Composant de la flèche
+    @author : Joël CHRABIE
+
+*/
 "use strict";
 var core_1 = require('@angular/core');
 var ArrowComponent = (function () {

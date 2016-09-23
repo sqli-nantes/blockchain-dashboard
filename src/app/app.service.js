@@ -1,19 +1,21 @@
+/*
+
+    Service permettant de parser un objet JS en objet de class et de récupérer le nom du User
+    @author : Joël CHRABIE
+
+*/
 "use strict";
 var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
 var name_service_1 = require('./name/name.service');
-var User_1 = require('./class/User');
-var users_const_1 = require('./utils/users.const');
 var AppService = (function () {
-    function AppService(http, ns) {
-        this.http = http;
+    function AppService(ns) {
         this.ns = ns;
     }
-    AppService.prototype.getUsers = function () {
-        var users;
-        users = users_const_1.USERS;
-        return this.parseObj(users, User_1.User);
-    };
+    /*
+      @Param:  json: Objet JS à parser
+               type: type de l'objet à parser
+      @Return: Objet parser dans le type donné en entrée
+    */
     AppService.prototype.parseObj = function (json, type) {
         var instance = new type();
         for (var prop in json) {
@@ -29,16 +31,24 @@ var AppService = (function () {
         }
         return instance;
     };
+    /*
+      @Param:   users: tableau d'utilisateurs sans leur nom
+      Utilisation du service 'NameService' pour récupérer le nom via l'addresse de l'utilisateur
+    */
     AppService.prototype.getName = function (users) {
-        for (var prop in users) {
+        var _loop_1 = function(prop) {
             if (!isNaN(parseFloat(prop))) {
-                users[prop]['name'] = this.ns.getNameByAddress(users[prop].address);
+                this_1.ns.getNameByAddress(users[prop].address).toPromise().then(function (responce) { return users[prop]['name'] = responce; });
             }
+        };
+        var this_1 = this;
+        for (var prop in users) {
+            _loop_1(prop);
         }
     };
     AppService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, name_service_1.NameService])
+        __metadata('design:paramtypes', [name_service_1.NameService])
     ], AppService);
     return AppService;
 }());

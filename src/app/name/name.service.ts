@@ -12,24 +12,23 @@ import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
 export class NameService {
-	constructor (private http: Http) {}
+  constructor (private http: Http) {}
 
   getNameByAddress( address: string ): Observable<string>  {
-  	return this.http.get('http://localhost:80/ad/' + address)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+    return this.http.get('http://localhost:80/ad/' + address)
+      .catch(this.handleError);
   }
 
   getNames(): Observable<string[]>  {
-  	return this.http.get('http://localhost:80')
-                    .map(this.extractData)
-                    .catch(this.handleError);
+    return this.http.get('http://localhost:80')
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   private extractData(res: Response) {
     let body = res.json();
     console.log(body);
-    return body.data || 'Contrat Choupette';
+    return body.data || 'No Name';
   }
 
   private handleError (error: any) {
