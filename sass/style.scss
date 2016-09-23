@@ -1,0 +1,181 @@
+@import "sass/partial/_utils";
+@import "sass/partial/_arrow";
+
+html,body{
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  text-align: center;
+}
+
+body {
+  background: $bodyBackColor fixed;
+  font-family: $fontBody;
+  -webkit-font-smoothing: antialiased;
+          font-smoothing: antialiased;
+  overflow-x: hidden;
+  background-image: url('../res/ethereum.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position:-400px;
+
+  h1{
+    font-family: $fontTitle;
+    transform: rotate(90deg) translate(43vh, -10vw);
+    color: #828384;
+    padding: 2vh 0;
+    margin: 0;
+    font-size: 10vh;
+    position: fixed;
+    display: inline-block;
+    right: 0;
+    span{
+      transform: rotate(-90deg) translate(40px, -140px);
+      font-size: 0.2em !important;
+      font-weight: bold;
+      display: inline-block;
+      color: #c99d66;
+    }
+  }
+
+  #no_transac{    
+    line-height: 99vh;
+    white-space: nowrap;
+    color: $smallColor;
+    font-size: 2.5em;
+    font-style: italic;
+  }
+
+  #logo{
+    position: fixed;
+    bottom:20px;
+    right: 20px;
+  }
+
+  #ui_container{
+    height: 100%;
+    margin:5% 0;
+
+    .ui {
+        width: 80vw;
+        height: 45vh;
+        margin: 4vh 10%;
+        color: white;
+        box-shadow: none;
+
+        &:not(:first-child){
+          opacity:0.6;
+        }
+
+        h2{
+          font-family: $fontTitle;
+          color:$goldColor;
+          margin:0;
+          padding:10px;
+          padding-bottom:0;
+          font-size: 3.5em;
+          border-bottom: 1px solid $borderColor;
+          small{
+            color: $smallColor;
+            font-size: 0.4em;
+          }
+        }
+
+      .ui_box {
+        width: 50%;
+        height: 100%;
+        position: relative;
+        float: left;
+        background: $uiBoxBackColor;
+        box-shadow: -1px 0px $borderColor;
+
+        .transac_box {
+          height: 30vh;
+          width: 100%;
+          opacity: 0;
+
+          .line{
+            height:33.33%;
+
+            &#down{    
+              text-align: right;
+            }
+
+            &#up{
+              text-align: left; 
+            }
+
+            span{
+              margin: 0 20px;
+            }
+          }
+
+          .solde {
+            font-weight: 700;
+            height: 100%;
+            line-height: 200%;
+            font-size: 3.5em;
+            white-space: nowrap;
+            display: inline-block;
+            color: #c99d66;
+          }
+        }       
+
+        .transaction{
+          font-weight: 900;
+          font-size: 4.5em;
+          position: absolute;
+          display: inline-block;
+          transform: translate(3vw,-19vh);
+          white-space: nowrap;
+          opacity: 0;
+        }
+
+        .t_sender{
+          color: $minorColor;
+        }
+
+        .t_receiver{
+          color: $plusColor;
+        }
+
+        .col-4{
+          width: 33.33%;
+          float: left;
+          min-height: 1px;
+          text-align: center;
+          height: 65%;
+          position: relative; 
+
+          .down{    
+            position: absolute;
+            bottom: 20%;
+            text-align: left;
+          }
+
+          .up{
+            position: absolute;
+            top: 10%;
+          }
+
+          .solde {
+            font-weight: 700;
+            font-size: 3.5em;
+            white-space: nowrap;
+            color: $goldColor;
+
+          }
+
+          .t_sender{
+            color: $minorColor;
+            transform: translate(-12vw,-120px);
+          }
+          .t_receiver{
+            color: $plusColor;
+            transform: translate(12vw,-120px);
+          }
+        }
+      }
+    }
+  }
+}

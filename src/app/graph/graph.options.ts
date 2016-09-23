@@ -10,17 +10,17 @@ export let OPTIONS = {
   chartArea: { width: '70%', height: '40%'},
   backgroundColor: 'transparent',
   curveType: 'function',
-  legend: { 
+  legend: {
     position: 'bottom',
     textStyle: {
         color: 'white'
     }
   },
-  animation:{
+  animation: {
     duration: 1000,
     easing: 'out',
   },
-  hAxis:{
+  hAxis: {
     title: 'Heure de la transaction',
     textStyle: {
         color: 'white'
@@ -35,17 +35,17 @@ export let OPTIONS = {
     textStyle: {
         color: 'white',
     },
-    gridlines:{
+    gridlines: {
       color: 'rgba(255,255,255,0.5)'
     },
     titleTextStyle: {
         color: 'white',
         fontSize: 18
     },
-    viewWindow:{
+    viewWindow: {
       min: 0
-      //max: _.max(_.map(this.users, u => u['balance']*2))
+      // max: _.max(_.map(this.users, u => u['balance']*2))
     }
   }
-}
+};
 

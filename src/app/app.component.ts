@@ -6,7 +6,7 @@
 */
 
 // Import des librairies, service, ...
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from './class/User';
 import { Transaction } from './class/Transaction';
 
@@ -36,9 +36,9 @@ export class AppComponent implements OnInit {
   time: Date;
 
   users = [
-    {address:"0xdb3b05cdc78ea632cb3f6816f9c14109070cc3b4", name:"Choupette", balance:2000},
-    {address:"0xe9bd4d7c245f4b14388f2bc71a09b0264057c31e", name:"Jim", balance:2000},
-    {address:"0xe9bd4d7c245f4b14388f2bc71a09b0264057b54f", name:"Seraphin", balance:2000},
+    { address: '0xdb3b05cdc78ea632cb3f6816f9c14109070cc3b4', name: 'Choupette', balance: 2000 },
+    { address: '0xe9bd4d7c245f4b14388f2bc71a09b0264057c31e', name: 'Jim', balance: 2000 },
+    { address: '0xe9bd4d7c245f4b14388f2bc71a09b0264057b54f', name: 'Seraphin', balance: 2000 },
   ];
 
 
@@ -133,20 +133,20 @@ export class AppComponent implements OnInit {
     transaction = this.appService.parseObj({
       sender: sender,
       receiver: receiver,
-      amount: this.randomize(2000), 
+      amount: this.randomize(2000),
       date: new Date()
-    },Transaction);
+    }, Transaction);
 
     transaction.sender.balance -= transaction.amount;
     transaction.receiver.balance += transaction.amount;
 
-    let indexSender = _.findIndex(this.users,['address', transaction.sender.address]);
-    let indexReceiver = _.findIndex(this.users,['address', transaction.receiver.address]);
+    let indexSender = _.findIndex(this.users, ['address', transaction.sender.address]);
+    let indexReceiver = _.findIndex(this.users, ['address', transaction.receiver.address]);
 
     this.users[indexSender].balance = transaction.sender.balance;
     this.users[indexReceiver].balance = transaction.receiver.balance;
 
-    return transaction;   
+    return transaction;
   }
 
   // Fonction d'animation de l'apparition d'une nouvelle transaction
@@ -164,7 +164,6 @@ export class AppComponent implements OnInit {
   transaction si le tableau dépasse les 5 valeurs */
   addTransaction (transaction: Transaction) {
     this.transactions.unshift(transaction);
-    this.newTransac.emit({ value: transaction });
 
     if (this.transactions.length >= 5) {
       this.transactions.pop();
@@ -172,6 +171,6 @@ export class AppComponent implements OnInit {
   }
 
   randomize(num: number): number {
-    return Math.floor(Math.random()*num);
+    return Math.floor(Math.random() * num);
   }
 }

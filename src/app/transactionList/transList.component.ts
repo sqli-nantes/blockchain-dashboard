@@ -7,10 +7,6 @@
 
 // Import des librairies, service, ...
 import { Component, OnInit, Input } from '@angular/core';
-
-import { User } from '../class/User';
-import { Transaction } from '../class/Transaction';
-
 import { AppService } from '../app.service';
 
 // Effets d'animations GSAP avec TweenMax

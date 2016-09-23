@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { OPTIONS } from './graph.options';
 import { AppService } from '../app.service';
 import * as _ from 'lodash';
-declare var google : any;
+declare var google: any;
 
 @Component({
   selector: 'graph',
@@ -15,15 +15,15 @@ declare var google : any;
 })
 
 export class GraphComponent extends OnInit {
-  private googleLoaded:any;
+  private googleLoaded: any;
   private options;
   private data;
   private chart;
-  private table;
+  private table: any[];
   @Input() user;
   @Input() transactions;
 
-  constructor (private service: AppService) { 
+  constructor (private service: AppService) {
     super();
     this.service.on('event1', (event) => {
       console.log(event);
@@ -35,13 +35,13 @@ export class GraphComponent extends OnInit {
   }
 
   ngOnInit() {
-    if(!this.googleLoaded) {
+    if (!this.googleLoaded) {
       this.googleLoaded = true;
       google.charts.load('current', {packages: ['corechart', 'line']});
     }
     google.charts.setOnLoadCallback(() => {
       this.drawGraph();
-      setInterval(() => this.updateChart(), 10000);      
+      setInterval(() => this.updateChart(), 10000);
     });
   }
 
@@ -63,19 +63,19 @@ export class GraphComponent extends OnInit {
   drawGraph() {
     let firstRow = [];
 
-    this.table = ['Date'],
+    this.table.push('Date');
     this.table =  _.concat(this.table, this.user['name']);
 
     this.options = OPTIONS;
     this.options.title = this.user['name'];
 
     switch (this.user['name']) {
-      case "Jim":
+      case 'Jim':
         this.options.colors = ['rgb(255, 227, 172)'];
         break;
-      case "Seraphin":
+      case 'Seraphin':
         this.options.colors = ['rgb(205, 177, 122)'];
-        break;      
+        break;
       default:
         this.options.colors = ['rgb(155, 127, 72)'];
         break;
@@ -103,18 +103,18 @@ export class GraphComponent extends OnInit {
 
     newBalances = this.user['balance'];
     newData = [new Date().toLocaleTimeString()];
-    newData[0] = _.concat(newData,newBalances)
+    newData[0] = _.concat(newData, newBalances);
 
     // now add the rows.
-    this.data.addRows(newData);    
+    this.data.addRows(newData);
 
-    if(this.data.getNumberOfRows()>8) {
+    if (this.data.getNumberOfRows() > 8) {
       this.data.removeRow(0);
-    }        
+    }
     console.log(this.user);
 
     // redraw the chart.
-    this.chart.draw(this.data, this.options);  
+    this.chart.draw(this.data, this.options);
   }
 
   randomize(num: number): number {
@@ -122,8 +122,9 @@ export class GraphComponent extends OnInit {
   }
 
   randomizeDate (rangeOfDays, startHour, hourRange): string {
-    var today = new Date(Date.now());
-    return new Date(today.getFullYear()+1900,today.getMonth(), today.getDate()+Math.random() *rangeOfDays, Math.random()*hourRange + startHour, Math.random()*60).toLocaleTimeString();
+    let today = new Date(Date.now());
+    return new Date(today.getFullYear() + 1900, today.getMonth(), today.getDate() + Math.random() * rangeOfDays,
+      Math.random() * hourRange + startHour, Math.random() * 60).toLocaleTimeString();
   }
 
 }

@@ -6,7 +6,7 @@
 */
 
 import { Injectable }    from '@angular/core';
-import {Observable,Observer} from 'rxjs/Rx';
+import { Observable, Observer } from 'rxjs/Rx';
 
 import { NameService} from './name/name.service';
 import { User } from './class/User';
@@ -19,8 +19,8 @@ export class AppService {
   observable: Observable<any>;
   observer: Observer<any>;
 
-  constructor (private ns: NameService) { 
-      this.observable = Observable.create((observer:Observer<any>) => {
+  constructor (private ns: NameService) {
+      this.observable = Observable.create((observer: Observer<any>) => {
       this.observer = observer;
     }).share();
   }
@@ -59,7 +59,7 @@ export class AppService {
 
   public getTansactions(): Array<Transaction> {
     return this._transactions;
-  }  
+  }
 
   public setTransactions (ts: Array<Transaction>) {
     this._transactions = ts;
