@@ -122,7 +122,6 @@ export class AppComponent implements OnInit {
       sender = this.users[this.randomize(this.users.length)];
       receiver = this.users[this.randomize(this.users.length)];
       amount = this.randomize(2000);
-      console.log(sender.balance - amount < 0);
     } while (sender === receiver || sender.balance - amount < 0);
 
     sender = this.appService.parseObj(sender, User);

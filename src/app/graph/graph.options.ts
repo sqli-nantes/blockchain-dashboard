@@ -9,7 +9,7 @@ export let OPTIONS = {
   lineWidth: 5,
   chartArea: { width: '70%', height: '40%'},
   backgroundColor: 'transparent',
-  curveType: 'function',
+  /* curveType: 'function', */
   legend: {
     position: 'bottom',
     textStyle: {
