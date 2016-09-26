@@ -17,7 +17,6 @@ import { Component, OnInit, Input } from '@angular/core';
 
 
 export class TabGraphComponent implements OnInit {
-  @Input() transactions;
   @Input() users;
 
   ngOnInit() {

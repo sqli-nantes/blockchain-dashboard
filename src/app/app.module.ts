@@ -10,7 +10,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
 import { ArrowComponent }  from './arrow/arrow.component';
 import { TabGraphComponent }  from './tabGraph/tabGraph.component';
 import { TransListComponent }  from './transactionList/transList.component';
@@ -37,7 +36,6 @@ import { MdTabsModule } from '@angular2-material/tabs';
   declarations: [
     AppComponent,
     ArrowComponent,
-    UserComponent,
     TabGraphComponent,
     GraphComponent,
     TransListComponent,

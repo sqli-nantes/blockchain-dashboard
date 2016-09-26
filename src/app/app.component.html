@@ -9,6 +9,6 @@
 </div><router-outlet></router-outlet>
 <div id="no_transac" *ngIf="transactions.length==0"><span>Pas de transactions</span></div>
 -->
-<tab-graph [transactions]="transactions" [users]="users"></tab-graph>
+<tab-graph [users]="users"></tab-graph>
 
 <trans-list [transactions]="transactions"></trans-list>

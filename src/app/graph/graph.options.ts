@@ -17,7 +17,7 @@ export let OPTIONS = {
     }
   },
   animation: {
-    duration: 1000,
+    duration: 500,
     easing: 'out',
   },
   hAxis: {

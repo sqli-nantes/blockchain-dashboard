@@ -24,7 +24,6 @@ declare let Sine: any;
 export class TransListComponent implements OnInit {
   @Input() transactions;
   users = [];
-  @Input() time;
 
   constructor(
     private appService: AppService

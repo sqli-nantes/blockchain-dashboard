@@ -42,9 +42,7 @@ export class AppComponent implements OnInit {
   ];
 
 
-  constructor(
-    private appService: AppService
-  ) { }
+  constructor( private appService: AppService ) {  }
 
   // Fonction lancée lors de l'initialisation du composant: connection à la blockchaine et mise à l'écoute des block en transit
   ngOnInit() {
@@ -53,7 +51,7 @@ export class AppComponent implements OnInit {
     setInterval(() => {
       this.fakeTransaction();
       this.time = new Date();
-    }, 10000);
+    }, this.randomize(20) * 1000);
   }
 
   fakeTransaction() {
@@ -117,24 +115,24 @@ export class AppComponent implements OnInit {
   randomTransac(): any {
     let sender: User;
     let receiver: User;
+    let amount: number;
     let transaction;
-    let u1;
-    let u2;
 
     do {
-      u1 = this.users[this.randomize(this.users.length)];
-      u2 = this.users[this.randomize(this.users.length)];
-    } while (u1 === u2);
+      sender = this.users[this.randomize(this.users.length)];
+      receiver = this.users[this.randomize(this.users.length)];
+      amount = this.randomize(2000);
+      console.log(sender.balance - amount < 0);
+    } while (sender === receiver || sender.balance - amount < 0);
 
-    sender = this.appService.parseObj(u1, User);
-
-    receiver = this.appService.parseObj(u2, User);
+    sender = this.appService.parseObj(sender, User);
+    receiver = this.appService.parseObj(receiver, User);
 
     transaction = this.appService.parseObj({
       sender: sender,
       receiver: receiver,
       amount: this.randomize(2000),
-      date: new Date()
+      time: new Date()
     }, Transaction);
 
     transaction.sender.balance -= transaction.amount;
@@ -164,13 +162,14 @@ export class AppComponent implements OnInit {
   transaction si le tableau dépasse les 5 valeurs */
   addTransaction (transaction: Transaction) {
     this.transactions.unshift(transaction);
-
+    this.appService.setTransaction(transaction);
     if (this.transactions.length >= 5) {
       this.transactions.pop();
     }
   }
 
   randomize(num: number): number {
-    return Math.floor(Math.random() * num);
+    let randomNum = Math.floor(Math.random() * num);
+    return randomNum;
   }
 }
