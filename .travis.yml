@@ -9,10 +9,8 @@ cache:
   directories:
     - node_modules
 
-before_install: 
-	- if [[ `npm -v` != 2* ]]; then npm i -g npm@2; fi
-
 install:
+  - npm i -g npm@2;
   - npm install -g webpack
   - npm install
 
