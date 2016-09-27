@@ -10,7 +10,11 @@ var name_service_1 = require('./name/name.service');
 var AppService = (function () {
     function AppService(ns) {
         this.ns = ns;
+        this.newTransac = new core_1.EventEmitter(true);
     }
+    AppService.prototype.setTransaction = function (transaction) {
+        this.newTransac.emit(transaction);
+    };
     /*
       @Param:  json: Objet JS à parser
                type: type de l'objet à parser
@@ -22,7 +26,8 @@ var AppService = (function () {
             if (!json.hasOwnProperty(prop)) {
                 continue;
             }
-            if (typeof json[prop] === 'object') {
+            if (typeof json[prop] === 'object' && (typeof json[prop] === 'string' ||
+                typeof json[prop] === 'number' || typeof json[prop] === 'date' || typeof json[prop] === 'Date')) {
                 instance[prop] = this.parseObj(json[prop], type);
             }
             else {
@@ -32,20 +37,18 @@ var AppService = (function () {
         return instance;
     };
     /*
-      @Param:   users: tableau d'utilisateurs sans leur nom
+      @Param:   users: utilisateur sans nom
       Utilisation du service 'NameService' pour récupérer le nom via l'addresse de l'utilisateur
     */
-    AppService.prototype.getName = function (users) {
-        var _loop_1 = function(prop) {
-            if (!isNaN(parseFloat(prop))) {
-                this_1.ns.getNameByAddress(users[prop].address).toPromise().then(function (responce) { return users[prop]['name'] = responce; });
-            }
-        };
-        var this_1 = this;
-        for (var prop in users) {
-            _loop_1(prop);
-        }
+    AppService.prototype.getName = function (user) {
+        return this.ns.getNameByAddress(user.address).toPromise().then(function (responce) {
+            return responce['_body'];
+        });
     };
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], AppService.prototype, "newTransac", void 0);
     AppService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [name_service_1.NameService])

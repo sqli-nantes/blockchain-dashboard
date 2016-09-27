@@ -5,18 +5,26 @@ var testing_2 = require('@angular/router/testing');
 var shared_1 = require('./shared');
 var app_component_1 = require('./app.component');
 describe('App', function () {
-    // provide our implementations or mocks to the dependency injector
     beforeEach(function () {
         testing_1.TestBed.configureTestingModule({
             imports: [testing_2.RouterTestingModule],
             declarations: [app_component_1.AppComponent],
             providers: [shared_1.ApiService, router_1.provideRoutes([])]
         });
+        app = new app_component_1.AppComponent();
     });
-    it('should have an url', function () {
-        var fixture = testing_1.TestBed.createComponent(app_component_1.AppComponent);
-        fixture.detectChanges();
-        expect(fixture.debugElement.componentInstance.url).toEqual('https://github.com/preboot/angular2-webpack');
+    describe('Testing Component app', function () {
+        it('test Randomize', function () {
+            var randomize = app.randomize(5);
+            expect(randomize).toBeGreaterThan(0);
+            expect(randomize).toBeLessThan(6);
+            expect(randomize).toBe('number');
+        });
+    });
+    describe('Testing math', function () {
+        it('multiplying should work', function () {
+            expect(4 * 4).toEqual(16);
+        });
     });
 });
 //# sourceMappingURL=app.component.spec.js.map

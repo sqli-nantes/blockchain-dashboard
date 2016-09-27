@@ -24,7 +24,7 @@ var NameService = (function () {
     NameService.prototype.extractData = function (res) {
         var body = res.json();
         console.log(body);
-        return body.data || 'Contrat Choupette';
+        return body.data || 'No Name';
     };
     NameService.prototype.handleError = function (error) {
         // In a real world app, we might use a remote logging infrastructure

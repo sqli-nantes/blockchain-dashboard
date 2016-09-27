@@ -6,7 +6,7 @@ import { ApiService } from './shared';
 import { AppComponent } from './app.component';
 
 describe('App', () => {
-  // provide our implementations or mocks to the dependency injector
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
@@ -15,10 +15,19 @@ describe('App', () => {
     });
   });
 
-  it('should have an url', () => {
-    let fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    expect(fixture.nativeElement).toContain('Jim');
+  describe('Testing Component app', () => {
+    it('test Randomize', () => {
+      let app = new AppComponent();
+      let randomize = app.randomize(5);
+      expect(randomize).toBeGreaterThan(-1);
+      expect(randomize).toBeLessThan(6);
+      expect(randomize).toMatch(/\d{1,}/);      
+    });
   });
 
+  describe('Testing math', () => {
+    it('multiplying should work', () => {
+      expect(4 * 4).toEqual(16);
+    });
+  });
 });

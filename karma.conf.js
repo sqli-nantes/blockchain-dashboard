@@ -39,7 +39,9 @@ module.exports = function (config) {
       reporters: [{
         type: 'json',
         dir: 'coverage',
-        subdir: 'json',
+        subdir: (browser) => {
+          return browser.toLowerCase().split(/[ /-]/)[0]; // returns 'chrome'
+        },
         file: 'coverage-final.json'
       }]
     },

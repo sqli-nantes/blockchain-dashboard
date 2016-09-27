@@ -1,6 +1,6 @@
 /*
 
-    Module permettant d'importer l'ensemble des composant, modules, pipes ... pour le lancement de l'appli
+    Module permettant d'importer l'ensemble des composants, modules, pipes ... pour le lancement de l'appli
     @author : Joël CHRABIE
 
 */
@@ -9,12 +9,10 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var http_1 = require('@angular/http');
 var app_component_1 = require('./app.component');
-var user_component_1 = require('./user/user.component');
 var arrow_component_1 = require('./arrow/arrow.component');
-var tabGraph_component_1 = require('./graph/tabGraph.component');
-var userGraph_component_1 = require('./user-graph/userGraph.component');
-var canvas_component_1 = require('./user-graph/canvas.component');
-var transList_component_1 = require('./trans-list/transList.component');
+var tabGraph_component_1 = require('./tabGraph/tabGraph.component');
+var transList_component_1 = require('./transactionList/transList.component');
+var graph_component_1 = require('./graph/graph.component');
 var shared_1 = require('./shared');
 var app_service_1 = require('./app.service');
 var name_service_1 = require('./name/name.service');
@@ -37,10 +35,8 @@ var AppModule = (function () {
             declarations: [
                 app_component_1.AppComponent,
                 arrow_component_1.ArrowComponent,
-                user_component_1.UserComponent,
                 tabGraph_component_1.TabGraphComponent,
-                userGraph_component_1.UserGraphComponent,
-                canvas_component_1.CanvasComponent,
+                graph_component_1.GraphComponent,
                 transList_component_1.TransListComponent,
                 user_pipe_1.NumeralFormatPipe
             ],
