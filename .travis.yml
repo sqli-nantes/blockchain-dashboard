@@ -10,7 +10,7 @@ cache:
     - node_modules
 
 install:
-  - npm i -g npm@2;
+  - npm i -g npm@3.10.8;
   - npm install -g webpack
   - npm install
 
