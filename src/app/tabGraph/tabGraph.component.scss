@@ -1,18 +1,30 @@
 @import "src/style/partial/_utils";
 
-md-card {
+.md-card {
 	padding:0;
 	background-color: rgba(255,255,255,0.2); 
 	margin:0 5%;
-	
-	.title-names {
-	    display: inline-block;
-	    width: 23.33%;
-	    padding: 5%;
-	    background-color: $darkGoldColor;
-	    margin-bottom: 20px;
-	}
-	graph{
-		height: 100%;
+	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: box-shadow;
+    display: block;
+    position: relative;
+    border-radius: 2px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+
+	.md-card-content{
+		font-size: 14px;
+
+		.title-names {
+		    display: inline-block;
+		    width: 23.33%;
+		    padding: 5%;
+		    background-color: $darkGoldColor;
+		    margin-bottom: 20px;
+		}
+		
+		graph{
+			height: 100%;
+		}
 	}
 }

@@ -21,17 +21,10 @@ import { NameService } from './name/name.service';
 
 import { NumeralFormatPipe } from './user/user.pipe';
 
-import { MdButtonModule } from '@angular2-material/button';
-import { MdCardModule } from '@angular2-material/card';
-import { MdTabsModule } from '@angular2-material/tabs';
-
 @NgModule({
   imports: [
     BrowserModule,
-    HttpModule,
-    MdButtonModule,
-    MdCardModule,
-    MdTabsModule
+    HttpModule
   ],
   declarations: [
     AppComponent,
