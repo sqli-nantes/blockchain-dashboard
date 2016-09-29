@@ -33,8 +33,8 @@ export class AppService {
         if (!json.hasOwnProperty(prop)) {
             continue;
         }
-        if (typeof json[prop] === 'object' && (typeof json[prop] === 'string' || 
-          typeof json[prop] === 'number' || typeof json[prop] === 'date' || typeof json[prop] === 'Date')) {
+        if ( typeof json[prop] === 'object' && ( typeof json[prop] === 'string' || 
+          typeof json[prop] === 'number' || typeof json[prop] === 'Date') ) {
             instance[prop] = this.parseObj(json[prop], type);
         } else {
             instance[prop] = json[prop];

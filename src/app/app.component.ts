@@ -48,6 +48,13 @@ export class AppComponent implements AfterViewInit {
   ngAfterViewInit() {
     // this.blockchainConnect();
     // this.blockchainFilter();
+    /* Fonctionne en mode dev mais pas pour les tests 
+    setInterval(() => {
+      this.fakeTransaction();
+    }, this.randomize(10) * 1000);
+    */
+    
+    /* Fonctionne pour les tests mais pas pour le mode dev */
       this.fakeTransaction();
   }
 

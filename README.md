@@ -1,6 +1,6 @@
 # Block-Dash
 
-[![Build Status](https://travis-ci.org/sqli-nantes/blockchain-dashboard.svg?branch=master)](https://travis-ci.org/sqli-nantes/blockchain-dashboard)
+[![Build Status](https://travis-ci.org/sqli-nantes/blockchain-dashboard.svg?branch=master)](https://travis-ci.org/sqli-nantes/blockchain-dashboard)[![dependencies Status](https://david-dm.org/sqli-nantes/blockchain-dashboard/status.svg)](https://david-dm.org/sqli-nantes/blockchain-dashboard)
 
 DashBoard for the Blockchain's transactions.
 

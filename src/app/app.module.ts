@@ -11,7 +11,6 @@ import { HttpModule }    from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { ArrowComponent }  from './arrow/arrow.component';
 import { TabGraphComponent }  from './tabGraph/tabGraph.component';
 import { TransListComponent }  from './transactionList/transList.component';
 import { GraphComponent }  from './graph/graph.component';
@@ -28,7 +27,6 @@ import { NameService } from './name/name.service';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
-    ArrowComponent,
     TabGraphComponent,
     GraphComponent,
     TransListComponent
