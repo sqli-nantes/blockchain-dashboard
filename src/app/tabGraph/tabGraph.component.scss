@@ -13,13 +13,15 @@
     font-family: Roboto, "Helvetica Neue", sans-serif;
 
 	.md-card-content{
-		font-size: 14px;
+		font-size: 22px;
 
 		.title-names {
 		    display: inline-block;
 		    width: 23.33%;
 		    padding: 5%;
 		    background-color: $darkGoldColor;
+		    color: $lightGoldColor;
+		    font-weight: bold;
 		    margin-bottom: 20px;
 		}
 		

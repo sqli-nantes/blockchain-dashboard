@@ -117,7 +117,7 @@ export class GraphComponent extends OnInit {
     }
   }
 
-  changeTransactionEventHandler (transaction: Transaction){
+  changeTransactionEventHandler (transaction: Transaction) {
     this.updateChart(transaction);
   }
 

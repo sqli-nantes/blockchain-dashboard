@@ -23,7 +23,8 @@ export let OPTIONS = {
   hAxis: {
     title: 'Heure de la transaction',
     textStyle: {
-        color: 'white'
+        color: 'white',
+        fontName: 'Roboto'
     },
     titleTextStyle: {
         color: 'white',

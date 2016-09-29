@@ -93,21 +93,17 @@
       "check-type"
     ],
 
-    "directive-selector-name": [true, "camelCase"],
-    "component-selector-name": [true, "kebab-case"],
-    "directive-selector-type": [true, "attribute"],
-    "component-selector-type": [true, "element"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
     "no-input-rename": true,
     "no-output-rename": true,
-    "use-life-cycle-interface": true,
+    "use-life-cycle-interface": false,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "directive-selector-prefix": [true, "my"],
-    "component-selector-prefix": [true, "my"],
-    "pipe-naming": [true, "camelCase", "my"]
+    "directive-selector-prefix": [false, "my"],
+    "component-selector-prefix": [false, "my"],
+    "pipe-naming": [false, "camelCase", "my"]
   }
 }

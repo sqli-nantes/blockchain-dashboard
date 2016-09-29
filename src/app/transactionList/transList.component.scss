@@ -1,5 +1,9 @@
 @import "./src/style/partial/_utils";
 
+@function opacity($num) {
+    // code
+}
+
 #no_transac{    
   line-height: 99vh;
   white-space: nowrap;
@@ -17,7 +21,6 @@
 #ui_container{
   height: 100%;
   margin:5% 0;
-
 }
 
 .ui {
@@ -30,7 +33,7 @@
   float: left;
 
   &:not(:first-child){
-    opacity:0.6;
+    opacity:0.4;
   }
 
   .ui_box {
@@ -40,6 +43,24 @@
     float: left;
     background: $uiBoxBackColor;
     box-shadow: -1px 0px $borderColor;
+
+    .ico {  
+      margin: 0 auto;
+      float: left;
+      width: 33.33%;
+      text-align: center;
+      position: relative;
+      transform: scale(0.6) translateY(-25%) rotate(-90deg) !important;
+
+      .st-arrow {
+        fill: #828384;
+      }
+
+      .svg {
+        z-index: 9;
+        position: relative;
+      }
+    }
 
     h2{
       font-size: 4em;
@@ -59,6 +80,8 @@
       right: 20px;
       text-align: right;
       width: 100px;
+      font-family: $fontBody;
+      color: $lightGreyColor;
     }
 
     .amount{

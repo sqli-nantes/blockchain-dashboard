@@ -1,14 +1,5 @@
-src/*.map
-src/app/*.js
-src/*.ts
 typings/
 *.map
 *.log
-karma.*
-protractor.*
-karma-shim.*
-tsconfig.json
-tslint.json
-typedoc.json
-typings.json
 dist/
+coverage/

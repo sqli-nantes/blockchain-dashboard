@@ -6,7 +6,7 @@
 */
 
 // Import des librairies, service, ...
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { User } from './class/User';
 import { Transaction } from './class/Transaction';
 
@@ -31,7 +31,7 @@ declare let Sine: any;
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewInit {
   transactions: Array<Transaction> = [];
   time: Date;
 
@@ -45,17 +45,14 @@ export class AppComponent implements OnInit {
   constructor( private appService: AppService ) {  }
 
   // Fonction lancée lors de l'initialisation du composant: connection à la blockchaine et mise à l'écoute des block en transit
-  ngOnInit() {
+  ngAfterViewInit() {
     // this.blockchainConnect();
     // this.blockchainFilter();
-    setInterval(() => {
       this.fakeTransaction();
-      this.time = new Date();
-    }, this.randomize(20) * 1000);
   }
 
   fakeTransaction() {
-    this.addStat(this.randomTransac());
+      this.addStat(this.randomTransac());
   }
 
   // Fonction de connection à la blockchain

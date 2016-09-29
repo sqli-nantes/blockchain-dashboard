@@ -55,21 +55,3 @@ img {
   height: 100%;
   margin:5% 0;
 }
-
-md-ink-bar{
-  background-color: #828384;
-}
-
-.md-tab-header{
-  background-color: rgba(201, 157, 102, 0.8)!important; 
-  color: white;
-  height: 7vh;
-}
-
-.md-tab-label{
-  height: inherit!important;
-  padding: 12px!important;
-  font-size: 20px!important;
-  font-weight: bold!important;
-  opacity: 1!important;
-}
