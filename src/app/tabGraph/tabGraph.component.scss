@@ -2,7 +2,7 @@
 
 .md-card {
 	padding:0;
-	background-color: rgba(255,255,255,0.2); 
+	background-color: rgba(0,0,0,0.6); 
 	margin:0 5%;
 	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
     transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -13,14 +13,13 @@
     font-family: Roboto, "Helvetica Neue", sans-serif;
 
 	.md-card-content{
-		font-size: 22px;
-
+		font-size: 26px;
 		.title-names {
 		    display: inline-block;
-		    width: 23.33%;
-		    padding: 5%;
-		    background-color: $darkGoldColor;
-		    color: $lightGoldColor;
+		    width: 94%;
+		    padding: 3%;
+		    background-color: #9b7f48;
+		    color: #ffe3ac;
 		    font-weight: bold;
 		    margin-bottom: 20px;
 		}

@@ -32,7 +32,6 @@ declare let Sine: any;
 })
 
 export class AppComponent implements AfterViewInit {
-  transactions: Array<Transaction> = [];
   time: Date;
 
   users = [
@@ -41,25 +40,20 @@ export class AppComponent implements AfterViewInit {
     { address: '0xe9bd4d7c245f4b14388f2bc71a09b0264057b54f', name: 'Seraphin', balance: 2000 },
   ];
 
-
   constructor( private appService: AppService ) {  }
 
-  // Fonction lancée lors de l'initialisation du composant: connection à la blockchaine et mise à l'écoute des block en transit
+  // Fonction lancée lors de l'initialisation du composant: connection à la blockchaine et mise à 
+  // l'écoute des blocks en transit, et dans le cas de démo, création d'une fausse transaction à interval régulier
   ngAfterViewInit() {
     // this.blockchainConnect();
     // this.blockchainFilter();
-    /* Fonctionne en mode dev mais pas pour les tests 
-    setInterval(() => {
-      this.fakeTransaction();
-    }, this.randomize(10) * 1000);
-    */
-    
-    /* Fonctionne pour les tests mais pas pour le mode dev */
-      this.fakeTransaction();
+    this.fakeTransaction(5000);
   }
 
-  fakeTransaction() {
-      this.addStat(this.randomTransac());
+  fakeTransaction(ms: number) {
+    setInterval(() => {
+      this.randomTransac();
+    }, ms);
   }
 
   // Fonction de connection à la blockchain
@@ -72,13 +66,13 @@ export class AppComponent implements AfterViewInit {
   // Fonction de souscription à l'évennement de block sur la blockchaine
   blockchainFilter() {
     let filter = web3.eth.filter('latest');
-    filter.watch((error, result) => {
+    filter.watch((error,result) => {
       if (!error) {
         let transac = web3.eth.getTransactionFromBlock(result);
         if (transac) {
           let receipt = web3.eth.getTransactionReceipt(transac.hash);
           if (receipt) {
-            this.addStat(this.parseTransac(transac));
+            this.parseTransac(transac);
           }
         }
       }
@@ -113,7 +107,7 @@ export class AppComponent implements AfterViewInit {
       amount: transac.value.c[0],
     }, Transaction);
 
-    return transaction;
+    this.appService.setTransaction(transaction);
   }
 
   randomTransac(): any {
@@ -147,28 +141,7 @@ export class AppComponent implements AfterViewInit {
     this.users[indexSender].balance = transaction.sender.balance;
     this.users[indexReceiver].balance = transaction.receiver.balance;
 
-    return transaction;
-  }
-
-  // Fonction d'animation de l'apparition d'une nouvelle transaction
-  addStat (transaction: Transaction): void {
-    this.addTransaction(transaction);
-
-    setTimeout(() => {
-      TweenMax.to('.ui:first-child', 0.6, {height: 0, reversed: true, ease: Sine.easeOut});
-      TweenMax.to('.ui:first-child .transac_box', 0.6, {opacity: 1, delay: 0.6});
-      TweenMax.to('.ui:first-child .transaction', 0.6, {opacity: 1, delay: 0.6});
-    }, 1);
-  }
-
-  /* Fonction d'ajout d'une transaction dans le haut de la pile et suppression de la plus ancienne 
-  transaction si le tableau dépasse les 5 valeurs */
-  addTransaction (transaction: Transaction) {
-    this.transactions.unshift(transaction);
     this.appService.setTransaction(transaction);
-    if (this.transactions.length >= 5) {
-      this.transactions.pop();
-    }
   }
 
   randomize(num: number): number {

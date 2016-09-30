@@ -38,7 +38,7 @@ export class GraphComponent extends OnInit {
     google.charts.setOnLoadCallback(() => {
       this.drawGraph();
     });
-    this.service.newTransac.subscribe(transaction => this.changeTransactionEventHandler(transaction));
+    this.service.newTransac.subscribe(transaction => this.updateChart(transaction));
   }
 
   createLineChart (element: any): any {
@@ -57,7 +57,7 @@ export class GraphComponent extends OnInit {
     table =  _.concat(table, this.user['name']);
 
     this.options = OPTIONS;
-    this.setOptions();
+    this.options.title = this.user['name'];
 
     firstRow = [new Date().toLocaleTimeString(), this.user['balance']];
 
@@ -76,7 +76,8 @@ export class GraphComponent extends OnInit {
     let newBalances = [];
 
     newBalances = this.user['balance'];
-    this.setOptions();
+    this.options.title = this.user['name'];
+    
     newData = [transaction.time.toLocaleTimeString()];
     newData[0] = _.concat(newData, newBalances);
 
@@ -93,32 +94,6 @@ export class GraphComponent extends OnInit {
 
   randomize(num: number): number {
     return Math.floor(Math.random() * num);
-  }
-
-  randomizeDate (rangeOfDays, startHour, hourRange): string {
-    let today = new Date(Date.now());
-    return new Date(today.getFullYear() + 1900, today.getMonth(), today.getDate() + Math.random() * rangeOfDays,
-      Math.random() * hourRange + startHour, Math.random() * 60).toLocaleTimeString();
-  }
-
-  setOptions() {
-    this.options.title = this.user['name'];
-
-    switch (this.user['name']) {
-      case 'Jim':
-        this.options.colors = ['rgb(255, 227, 172)'];
-        break;
-      case 'Seraphin':
-        this.options.colors = ['rgb(205, 177, 122)'];
-        break;
-      default:
-        this.options.colors = ['rgb(155, 127, 72)'];
-        break;
-    }
-  }
-
-  changeTransactionEventHandler (transaction: Transaction) {
-    this.updateChart(transaction);
   }
 
 }

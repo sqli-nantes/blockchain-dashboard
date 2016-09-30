@@ -22,7 +22,9 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   background-position:-400px;
-  background-image: url('../img/ethereum.png')
+  background-image: url('../img/ethereum.png');
+  position: fixed;
+  overflow-y: visible;
 }
 
 h1{
@@ -44,14 +46,9 @@ h1>span{
   color: #c99d66;
 }
 
-img {
+#logo {
   position: fixed;
-  top: 50%;
-  transform: translate(-50%,-50%);
-  z-index: -1;
-}   
-
-#ui_container{
-  height: 100%;
-  margin:5% 0;
+  right: 3vh;
+  top: 3vh;
+  width: 10vw;
 }

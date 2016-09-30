@@ -3,15 +3,17 @@
 'use strict';
 export let OPTIONS = {
   titleTextStyle: {
+    position: 'center',
     color: 'white',
     fontSize: 23
   },
+  colors: ['rgb(255, 227, 172)'],
   lineWidth: 5,
-  chartArea: { width: '70%', height: '40%'},
+  chartArea: { width: '85%', height: '65%'},
   backgroundColor: 'transparent',
   /* curveType: 'function', */
   legend: {
-    position: 'bottom',
+    position: 'none',
     textStyle: {
         color: 'white'
     }
@@ -21,7 +23,6 @@ export let OPTIONS = {
     easing: 'out',
   },
   hAxis: {
-    title: 'Heure de la transaction',
     textStyle: {
         color: 'white',
         fontName: 'Roboto'
@@ -32,12 +33,11 @@ export let OPTIONS = {
     }
   },
   vAxis: {
-    title: 'Balance (en Ether)',
     textStyle: {
         color: 'white',
     },
     gridlines: {
-      color: 'rgba(255,255,255,0.5)'
+      color: 'transparent'
     },
     titleTextStyle: {
         color: 'white',
