@@ -26,9 +26,9 @@ declare let Sine: any;
 
 @Component({
   selector: 'block-dashboard',
-  templateUrl: './app.component.html',
+  templateUrl: './app.html',
   providers: [ AppService ],
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./_app.scss']
 })
 
 export class AppComponent implements AfterViewInit {

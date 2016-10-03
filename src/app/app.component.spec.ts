@@ -14,16 +14,13 @@ import { MockBackend } from '@angular/http/testing';
 
 class MockAppService {
   newTransac = new EventEmitter(true);
-  setTransaction: function (transaction: Transaction) { this.newTransac.emit(transaction); }
-  parseObj: function (json, type) { return type }
-  getName: function (user: User) { return 'Jim' }
+  setTransaction = function (transaction: Transaction) { this.newTransac.emit(transaction); }
+  parseObj = function (json, type) { return type }
+  getName = function (user: User) { return 'Jim' }
 }
 
 
 describe('BlockDash tests', () => {
-
-
-
 
   describe('Testing Component app', () => {
 
@@ -84,18 +81,6 @@ describe('BlockDash tests', () => {
     it('can be initialized', () => {
       expect(component).not.toBeNull();
       expect(element).not.toBeNull();
-    });
-
-    it('RandomTransac must return a Transaction with a sender, a receiver, an amount and a date', () => {
-      transaction = component.randomTransac();
-
-      expect(transaction).not.toBeNull();
-      expect(transaction.sender).not.toBeNull();
-      expect(transaction.receiver).not.toBeNull();
-      expect(transaction.amount).not.toBeNull();
-      expect(transaction.time).not.toBeNull();
-
-      expect(transaction.amount).toBeGreaterThan(0);
     });
   });
 });

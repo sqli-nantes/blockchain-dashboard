@@ -11,8 +11,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'tab-graph',
-  templateUrl: './tabGraph.component.html',
-    styleUrls: ['./tabGraph.component.scss']
+  templateUrl: './tabGraph.html',
+    styleUrls: ['./_tabGraph.scss']
 })
 
 

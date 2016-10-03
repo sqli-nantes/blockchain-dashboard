@@ -19,8 +19,8 @@ declare let Sine: any;
 
 @Component({
   selector: 'trans-list',
-  templateUrl: './transList.component.html',
-  styleUrls: ['./transList.component.scss'],
+  templateUrl: './transList.html',
+  styleUrls: ['./_transList.scss'],
 })
 
 export class TransListComponent implements OnInit {

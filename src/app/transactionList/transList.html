@@ -1,0 +1,12 @@
+<div class='ui' *ngFor="let t of transactions">
+	<div class="ui_box">  
+		<div id="timestamp_transac">{{t.time|date: 'yyyy-MM-dd HH:mm:ss'}}</div>
+		<h2 class='left'>{{t.sender.name}}</h2>
+		<div class='amount'>{{t.amount}}</div>
+		<div class="ico animated"> 
+			<img src="./res/img/arrow.svg">
+		</div>
+		<h2 class='right'>{{t.receiver.name}}</h2>
+	</div>
+</div>
+<div id="no_transac" *ngIf="transactions.length==0"><span>Pas de transactions</span></div>

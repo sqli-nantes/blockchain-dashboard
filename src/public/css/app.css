@@ -22,7 +22,7 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   background-position:-400px;
-  background-image: url('../img/ethereum.png');
+  background-image: url('../res/img/ethereum.png');
   position: fixed;
   overflow-y: visible;
 }
