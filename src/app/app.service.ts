@@ -1,5 +1,4 @@
 /*
-
     Service permettant de parser un objet JS en objet de class et de récupérer le nom du User
     @author : Joël CHRABIE
 
@@ -18,14 +17,18 @@ export class AppService {
 
   constructor (private ns: NameService) { }
 
+  /* 
+    @Param: transaction: Transaction a emetre
+    Emition d'un Event lors d'une nouvelle transaction 
+  */
   setTransaction (transaction: Transaction) {
     this.newTransac.emit(transaction);
   }
 
   /*
-    @Param:  json: Objet JS à parser
-             type: type de l'objet à parser
-    @Return: Objet parser dans le type donné en entrée
+    @Param:  json: Objet JS a parser
+             type: type de l'objet a parser
+    @Return: Objet parser dans le type donné en entree
   */
   parseObj(json, type) {
     let instance = new type();
@@ -34,7 +37,7 @@ export class AppService {
             continue;
         }
         if ( typeof json[prop] === 'object' && ( typeof json[prop] === 'string' || 
-          typeof json[prop] === 'number' || typeof json[prop] === 'Date') ) {
+          typeof json[prop] === 'number' || typeof json[prop] === 'Date' ) ) {
             instance[prop] = this.parseObj(json[prop], type);
         } else {
             instance[prop] = json[prop];
@@ -44,12 +47,20 @@ export class AppService {
   }
 
   /*
-    @Param:   users: utilisateur sans nom
-    Utilisation du service 'NameService' pour récupérer le nom via l'addresse de l'utilisateur
+    @Param:  user: utilisateur sans nom
+    @Return: Promise
+    Utilisation du service 'NameService' pour recuperer le nom via l'addresse de l'utilisateur
   */
-  getName(user: User): any {
-      return this.ns.getNameByAddress(user.address).toPromise().then(responce => {
-        return responce['_body'];
-      });
+  getName(user: User): Promise<string> {
+      return this.ns.getNameByAddress(user.address);
+  }
+
+  // Retourne tous les noms d'utilisateur
+  getNames(): Promise<string[]> {
+      return this.ns.getNames().toPromise();
+  }
+  // Retour l'addresse IP de la Blockchaine
+  getIp(): Promise<string>  {
+      return this.ns.getIp().toPromise();
   }
 }

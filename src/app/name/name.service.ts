@@ -9,26 +9,35 @@ import { Injectable }   from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 
+import * as _ from 'lodash';
 
 @Injectable()
 export class NameService {
   constructor (private http: Http) {}
 
-  getNameByAddress( address: string ): Observable<string>  {
-    return this.http.get('http://localhost:80/ad/' + address)
-      .catch(this.handleError);
+  getNameByAddress( address: string ): Promise<any>  {
+      return this.getNames().toPromise().then(responce => {
+        let user = _.find(responce, ['address', address]);
+        return user['name'];
+      });
   }
 
   getNames(): Observable<string[]>  {
-    return this.http.get('http://localhost:80')
+    return this.http.get('./res/json/names.json')
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  private extractData(res: Response) {
+  getIp(): Observable<string>  {
+    return this.http.get('./res/json/ipRPI.json')
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  private extractData (res: Response) {
     let body = res.json();
     console.log(body);
-    return body.data || 'No Name';
+    return body;
   }
 
   private handleError (error: any) {
