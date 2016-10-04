@@ -1,0 +1,24 @@
+tab-graph{
+  width: 33.33%;
+  display: inline-block;
+  float:left;
+  height:80vh;
+  margin:10vh 0;
+  position: fixed;
+  left:0;
+  top:0;
+}
+
+trans-list{
+  width: 66.66%;
+  display: inline-block;
+  margin-left: 33.33%;
+  float: left;
+}
+
+#modedemo{
+  position: fixed;
+  bottom: 3vh;
+  right: 3vh;
+  width: 8vw;
+}

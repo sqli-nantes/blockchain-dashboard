@@ -1,6 +1,14 @@
+/*
+
+    Graph à gauche de l'appli
+    @author : Joël CHRABIE
+
+*/
 import { Component, Input, OnInit } from '@angular/core';
+
 import { OPTIONS } from './graph.options';
 import { AppService } from '../app.service';
+
 import { Transaction } from '../class/Transaction';
 import * as _ from 'lodash';
 declare var google: any;
@@ -10,7 +18,7 @@ declare var google: any;
   styleUrls: ['./_graph.scss'],
   template: `
     <div class="chart" >
-        <div [attr.id]="'chart_divEvolution' + user.name"></div>
+        <div [attr.id]="'chart' + user.name"></div>
     </div>
   `
 })
@@ -30,6 +38,7 @@ export class GraphComponent extends OnInit {
       return google;
   }
 
+  // Initialisation des packages au lancement du composant et souscription à l'évennement de nouvelle transaction
   ngOnInit() {
     if (!this.googleLoaded) {
       this.googleLoaded = true;
@@ -41,14 +50,16 @@ export class GraphComponent extends OnInit {
     this.service.newTransac.subscribe(transaction => this.updateChart(transaction));
   }
 
+  // Création du graphique en lignes
   createLineChart (element: any): any {
       return new google.visualization.LineChart(element);
   }
-
+  // Création du tableau
   createDataTable (array: any[]): any {
       return google.visualization.arrayToDataTable(array);
   }
 
+  // Initialisation du Graph
   drawGraph() {
     let firstRow = [];
     let table = [];
@@ -66,18 +77,18 @@ export class GraphComponent extends OnInit {
       table,
       firstRow
     ]);
-    this.chart = this.createLineChart(document.getElementById('chart_divEvolution' + this.user.name));
+    this.chart = this.createLineChart(document.getElementById('chart' + this.user.name));
     this.chart.draw(this.data, this.options);
   }
 
-  // function to update the chart with new data.
+  // Quand une nouvelle transaction arrive, on update le graph.
   updateChart (transaction: Transaction) {
     let newData = [];
     let newBalances = [];
 
     newBalances = this.user['balance'];
     this.options.title = this.user['name'];
-    
+
     newData = [transaction.time.toLocaleTimeString()];
     newData[0] = _.concat(newData, newBalances);
 
@@ -91,9 +102,4 @@ export class GraphComponent extends OnInit {
     // redraw the chart.
     this.chart.draw(this.data, this.options);
   }
-
-  randomize(num: number): number {
-    return Math.floor(Math.random() * num);
-  }
-
 }

@@ -9,7 +9,7 @@ export let OPTIONS = {
   },
   colors: ['rgb(255, 227, 172)'],
   lineWidth: 5,
-  chartArea: { width: '85%', height: '65%'},
+  chartArea: { width: '70%', height: '65%'},
   backgroundColor: 'transparent',
   /* curveType: 'function', */
   legend: {
@@ -42,10 +42,6 @@ export let OPTIONS = {
     titleTextStyle: {
         color: 'white',
         fontSize: 18
-    },
-    viewWindow: {
-      min: 0
-      // max: _.max(_.map(this.users, u => u['balance']*2))
     }
   }
 };

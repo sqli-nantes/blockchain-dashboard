@@ -9,8 +9,10 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { routing }  from './app.routing';
 
 import { AppComponent } from './app.component';
+import { MainComponent } from './main/main.component';
 import { TabGraphComponent }  from './tabGraph/tabGraph.component';
 import { TransListComponent }  from './transactionList/transList.component';
 import { GraphComponent }  from './graph/graph.component';
@@ -22,11 +24,13 @@ import { NameService } from './name/name.service';
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    routing
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
+    MainComponent,
     TabGraphComponent,
     GraphComponent,
     TransListComponent
