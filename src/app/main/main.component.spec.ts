@@ -1,13 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 import { EventEmitter } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import { AppComponent } from './app.component';
+import { MainComponent } from './main.component';
 
-import { AppService } from './app.service';
-import { NameService } from './name/name.service';
+import { AppService } from '../app.service';
+import { NameService } from '../name/name.service';
 
-import { User } from './class/User';
-import { Transaction } from './class/Transaction';
+import { User } from '../class/User';
+import { Transaction } from '../class/Transaction';
+import { Observable }     from 'rxjs/Observable';
 
 import { Http, BaseRequestOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
@@ -19,18 +21,19 @@ class MockAppService {
   getName = function (user: User) { return 'Jim'; };
 }
 
+class MockActivatedRoute extends ActivatedRoute {}
 
 describe('BlockDash tests', () => {
 
-  /*describe('Testing Component app', () => {
+  describe('Testing Component app', () => {
 
-    let component: AppComponent;
+    let component: MainComponent;
     let element;
     let fixture;
 
     beforeEach((done) => {
       TestBed.configureTestingModule( {
-        declarations: [AppComponent],
+        declarations: [MainComponent],
         providers: [
           MockBackend,
           BaseRequestOptions,
@@ -44,24 +47,34 @@ describe('BlockDash tests', () => {
           {
             provide: (AppService, { useClass: MockAppService })
           },
+          {
+            provide: ActivatedRoute,
+            useFactory: () => {
+              return new ActivatedRoute();
+            }
+          },
+          {
+            provide: Router,
+            useFactory: () => {
+              return new Router(null,null,null,null,null,null,null,null);
+            }
+          },
           NameService
         ]
       });
 
-      // Overrides here, if you need them
-      TestBed.overrideComponent(AppComponent, {
+      // Override du template
+      TestBed.overrideComponent(MainComponent, {
         set: {
           template: '<div *ngFor="let t of transactions">{{t}}</div>'
         }
       });
 
       TestBed.compileComponents().then(() => {
-        fixture = TestBed.createComponent(AppComponent);
+        fixture = TestBed.createComponent(MainComponent);
 
         // Access the dependency injected component instance
         component = fixture.componentInstance;
-
-        expect(typeof component.randomize(5)).toBe('number');
 
         // Access the element
         element = fixture.nativeElement;
@@ -69,10 +82,7 @@ describe('BlockDash tests', () => {
         // Detect changes as necessary
         fixture.detectChanges();
         done();
-      }).catch(error => {
-        expect(false).toBe(true);
-        done();
-      });
+      })
 
     });
 
@@ -80,5 +90,5 @@ describe('BlockDash tests', () => {
       expect(component).not.toBeNull();
       expect(element).not.toBeNull();
     });
-  });*/
+  });
 });
