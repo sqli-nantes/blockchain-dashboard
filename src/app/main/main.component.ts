@@ -10,8 +10,6 @@ import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { User } from '../class/User';
 import { Transaction } from '../class/Transaction';
 
-import { ActivatedRoute } from '@angular/router';
-
 import { AppService } from '../app.service';
 
 import * as _ from 'lodash';
@@ -34,12 +32,11 @@ export class MainComponent implements AfterViewInit, OnInit {
   demo: boolean;
 
   constructor(
-    private appService: AppService,
-    private route: ActivatedRoute
+    private appService: AppService
   ) { }
 
   ngOnInit() {
-    this.demo = Boolean(this.route.snapshot.data['demo']);
+    this.demo = this.appService.getUrlData();
     console.log('Demo mode? :' + this.demo);
   }
 

@@ -10,12 +10,17 @@ import { NameService} from './name/name.service';
 import { User } from './class/User';
 import { Transaction } from './class/Transaction';
 
+import { ActivatedRoute } from '@angular/router';
+
 @Injectable()
 export class AppService {
 
   @Output() newTransac = new EventEmitter(true);
 
-  constructor (private ns: NameService) { }
+  constructor (
+    private ns: NameService,
+    private route: ActivatedRoute
+  ) { }
 
   /* 
     @Param: transaction: Transaction a emetre
@@ -59,8 +64,14 @@ export class AppService {
   getNames(): Promise<string[]> {
       return this.ns.getNames().toPromise();
   }
+
   // Retour l'addresse IP de la Blockchaine
   getIp(): Promise<string>  {
       return this.ns.getIp().toPromise();
+  }
+
+  // Retour Si on est en mode démo ou mode Blockchain
+  getUrlData(): boolean  {
+      return Boolean(this.route.snapshot.data['demo']);
   }
 }

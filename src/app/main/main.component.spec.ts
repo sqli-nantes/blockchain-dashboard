@@ -1,34 +1,31 @@
 import { TestBed } from '@angular/core/testing';
 import { EventEmitter } from '@angular/core';
-import { ActivatedRouteSnapshot, ActivatedRoute, Data } from '@angular/router';
 
 import { MainComponent } from './main.component';
 
 import { AppService } from '../app.service';
-import { NameService } from '../name/name.service';
 
 import { User } from '../class/User';
 import { Transaction } from '../class/Transaction';
 
-import { Http, BaseRequestOptions } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
-
 class MockAppService {
+
+  constructor () { }
+
   newTransac = new EventEmitter(true);
-  setTransaction = function (transaction: Transaction) { this.newTransac.emit(transaction); };
-  parseObj = function (json, type) { return type; };
-  getName = function (user: User) { return 'Jim'; };
-}
-
-class MockActivatedRoute {
-  constructor (snapshot: MockActivatedRouteSnapshot) { }
-}
-
-class MockActivatedRouteSnapshot {
-  public data: Data;
-  constructor (data: Data) {
-    this.data = data;
-  }
+  setTransaction = transaction => { this.newTransac.emit(transaction); };
+  parseObj = (json, type) => { return type; };
+  getName = user => { 
+    return new Promise((resolve, reject) => {
+      resolve('Jim');
+    }) 
+  };
+  getNames = users => { 
+    return new Promise((resolve, reject) => {
+      resolve(['Jim', 'Choupette']);
+    })
+  };
+  getUrlData = () => { return true; }
 }
 
 describe('BlockDash tests', () => {
@@ -38,44 +35,18 @@ describe('BlockDash tests', () => {
     let component: MainComponent;
     let element;
     let fixture;
-
     beforeEach((done) => {
       TestBed.configureTestingModule( {
-        declarations: [MainComponent],
-        providers: [
-          MockBackend,
-          MockActivatedRouteSnapshot,
-          BaseRequestOptions,
-          NameService,
-          { provide: AppService, useClass: MockAppService },
-          { 
-            provide: ActivatedRouteSnapshot, 
-            useFactory : (data: Data) => {
-              data['demo'] = true;
-              return new MockActivatedRouteSnapshot(data);
-            }
-          },
-          {
-            provide: Http,
-            useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
-              return new Http(backendInstance, defaultOptions);
-            },
-            deps: [MockBackend, BaseRequestOptions]
-          },
-          { 
-            provide: ActivatedRoute,
-            useFactory: (snapshot: MockActivatedRouteSnapshot) => {
-              return new MockActivatedRoute(snapshot);
-            },
-            deps: [MockActivatedRouteSnapshot]
-          }
-        ]
+        declarations: [MainComponent]
       });
 
       // Override du template
       TestBed.overrideComponent(MainComponent, {
         set: {
-          template: '<div *ngFor="let t of transactions">{{t}}</div>'
+          template: '<div *ngFor="let t of transactions">{{t}}</div>',
+          providers: [
+            { provide: AppService, useClass: MockAppService }
+          ]
         }
       });
 
