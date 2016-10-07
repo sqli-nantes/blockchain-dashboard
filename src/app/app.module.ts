@@ -9,6 +9,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { routing }  from './app.routing';
 
 import { AppComponent } from './app.component';
@@ -25,7 +26,8 @@ import { NameService } from './name/name.service';
     BrowserModule,
     HttpModule,
     FormsModule,
-    routing
+    routing,
+    RouterModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [

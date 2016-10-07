@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { EventEmitter } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRouteSnapshot, ActivatedRoute, Data } from '@angular/router';
 
 import { MainComponent } from './main.component';
 
@@ -9,7 +9,6 @@ import { NameService } from '../name/name.service';
 
 import { User } from '../class/User';
 import { Transaction } from '../class/Transaction';
-import { Observable }     from 'rxjs/Observable';
 
 import { Http, BaseRequestOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
@@ -21,7 +20,16 @@ class MockAppService {
   getName = function (user: User) { return 'Jim'; };
 }
 
-class MockActivatedRoute extends ActivatedRoute {}
+class MockActivatedRoute {
+  constructor (snapshot: MockActivatedRouteSnapshot) { }
+}
+
+class MockActivatedRouteSnapshot {
+  public data: Data;
+  constructor (data: Data) {
+    this.data = data;
+  }
+}
 
 describe('BlockDash tests', () => {
 
@@ -36,7 +44,17 @@ describe('BlockDash tests', () => {
         declarations: [MainComponent],
         providers: [
           MockBackend,
+          MockActivatedRouteSnapshot,
           BaseRequestOptions,
+          NameService,
+          { provide: AppService, useClass: MockAppService },
+          { 
+            provide: ActivatedRouteSnapshot, 
+            useFactory : (data: Data) => {
+              data['demo'] = true;
+              return new MockActivatedRouteSnapshot(data);
+            }
+          },
           {
             provide: Http,
             useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
@@ -44,22 +62,13 @@ describe('BlockDash tests', () => {
             },
             deps: [MockBackend, BaseRequestOptions]
           },
-          {
-            provide: (AppService, { useClass: MockAppService })
-          },
-          {
+          { 
             provide: ActivatedRoute,
-            useFactory: () => {
-              return new ActivatedRoute();
-            }
-          },
-          {
-            provide: Router,
-            useFactory: () => {
-              return new Router(null,null,null,null,null,null,null,null);
-            }
-          },
-          NameService
+            useFactory: (snapshot: MockActivatedRouteSnapshot) => {
+              return new MockActivatedRoute(snapshot);
+            },
+            deps: [MockActivatedRouteSnapshot]
+          }
         ]
       });
 
@@ -82,11 +91,11 @@ describe('BlockDash tests', () => {
         // Detect changes as necessary
         fixture.detectChanges();
         done();
-      })
-
+      });
     });
 
     it('can be initialized', () => {
+      console.log(component);
       expect(component).not.toBeNull();
       expect(element).not.toBeNull();
     });

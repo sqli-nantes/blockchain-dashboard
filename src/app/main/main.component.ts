@@ -10,7 +10,7 @@ import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { User } from '../class/User';
 import { Transaction } from '../class/Transaction';
 
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { AppService } from '../app.service';
 
@@ -35,13 +35,12 @@ export class MainComponent implements AfterViewInit, OnInit {
 
   constructor(
     private appService: AppService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.demo = Boolean(this.route.snapshot.data['demo']);
-    console.log(this.demo);
+    console.log('Demo mode? :' + this.demo);
   }
 
   // Fonction lancee lors de l'initialisation du composant: connection à la blockchaine et mise a 
