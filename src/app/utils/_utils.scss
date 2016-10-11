@@ -2,6 +2,24 @@
 	Fonts & colors of the application
 */
 
+
+/*Font of the app*/
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('css/font/sourcesanspro/sourcesanspro.woff2') format('woff2'),
+         url('css/font/sourcesanspro/sourcesanspro.woff') format('woff');
+    font-weight: 300;
+    font-style: 400;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('css/font/roboto/roboto.ttf') format('ttf');
+    font-weight: 900;
+    font-style: 900;
+}
+
 /*Colors*/
 $goldColor : rgb(201, 157, 102); // Gold color for transaction and name
 $smallColor : #828384; // color of sender's and receiver's address
@@ -16,8 +34,5 @@ $borderColor : rgba(255,255,255,0.1);
 $uiBoxBackColor : #1f2020; //dark grey for the boxes
 $bodyBackColor : #343535; //dark blue for the body
 
-/*Font of the app*/
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600);
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,900);
 $fontBody : 'Roboto', 'Source Sans Pro', arial;
 $fontTitle : 'Roboto','Source Sans Pro', arial;
