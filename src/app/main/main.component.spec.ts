@@ -82,7 +82,7 @@ describe('BlockDash tests', () => {
 
     describe('testing ngOnInit', () => {
       it('shoud return a boolean on the demo var', () => {
-        expect(component.demo).toBe(true);
+        expect(typeof component.demo).toEqual('boolean');
       });
     });
   });

@@ -2,8 +2,6 @@ import { TestBed } from '@angular/core/testing';
 
 import { TabGraphComponent } from './tabGraph.component';
 
-import { AppService } from '../app.service';
-
 import { User } from '../class/User';
 import { Transaction } from '../class/Transaction';
 

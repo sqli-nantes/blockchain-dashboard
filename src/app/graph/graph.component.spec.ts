@@ -4,9 +4,7 @@ import { Output, EventEmitter }    from '@angular/core';
 import { GraphComponent } from './graph.component';
 
 import { AppService } from '../app.service';
-
-import { User } from '../class/User';
-import { Transaction } from '../class/Transaction';
+declare var google: any;
 
 class MockAppService {
 
@@ -40,12 +38,17 @@ describe('BlockDash tests', () => {
 
     beforeEach((done) => {
       TestBed.configureTestingModule( {
-        declarations: [GraphComponent]
+        declarations: [GraphComponent, google]
       });
 
       // Override du template
       TestBed.overrideComponent(GraphComponent, {
         set: {
+          template: `
+            <div class="chart" >
+                <div id="chartJim"></div>
+            </div>
+          `,
           providers: [
             { provide: AppService, useClass: MockAppService }
           ]
@@ -65,7 +68,6 @@ describe('BlockDash tests', () => {
         fixture.detectChanges();
         done();
       });
-      jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
     });
 
     it('can be initialized', () => {
