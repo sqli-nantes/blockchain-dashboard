@@ -30,6 +30,7 @@ declare let Sine: any;
 export class MainComponent implements AfterViewInit, OnInit {
   users = [];
   demo: boolean;
+  transaction: Transaction;
 
   constructor(
     private appService: AppService
@@ -37,7 +38,6 @@ export class MainComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.demo = this.appService.getUrlData();
-    console.log('Demo mode? :' + this.demo);
   }
 
   // Fonction lancee lors de l'initialisation du composant: connection à la blockchaine et mise a 
@@ -94,7 +94,6 @@ export class MainComponent implements AfterViewInit, OnInit {
   parseTransac (transac: any) {
     let sender: User = null;
     let receiver: User = null;
-    let transaction: Transaction = null;
 
     sender = this.appService.parseObj({
       address: transac.from,
@@ -115,7 +114,7 @@ export class MainComponent implements AfterViewInit, OnInit {
       receiver.name = name;
     });
 
-    transaction = this.appService.parseObj({
+    this.transaction = this.appService.parseObj({
       sender: sender,
       receiver: receiver,
       amount: transac.value.c[0],
@@ -123,9 +122,9 @@ export class MainComponent implements AfterViewInit, OnInit {
     }, Transaction);
 
 
-    this.newBalance(transaction);
+    this.newBalance(this.transaction);
 
-    this.appService.setTransaction(transaction);
+    this.appService.setTransaction(this.transaction);
   }
 
   // Dans le mode Demo, creation d'une transaction fictive et emition au composants enfants
@@ -133,7 +132,6 @@ export class MainComponent implements AfterViewInit, OnInit {
     let sender: User;
     let receiver: User;
     let amount: number;
-    let transaction;
 
     do {
       sender = this.users[this.randomize(this.users.length)];
@@ -144,20 +142,20 @@ export class MainComponent implements AfterViewInit, OnInit {
     sender = this.appService.parseObj(sender, User);
     receiver = this.appService.parseObj(receiver, User);
 
-    transaction = this.appService.parseObj({
+    this.transaction = this.appService.parseObj({
       sender: sender,
       receiver: receiver,
       amount: this.randomize(2000),
       time: new Date()
     }, Transaction);
 
-    transaction.sender.balance -= transaction.amount;
-    transaction.receiver.balance += transaction.amount;
+    this.transaction.sender.balance -= this.transaction.amount;
+    this.transaction.receiver.balance += this.transaction.amount;
 
-    this.newBalance(transaction);
+    this.newBalance(this.transaction);
 
     // Emition de la transaction aux autres composants
-    this.appService.setTransaction(transaction);
+    this.appService.setTransaction(this.transaction);
   }
 
   randomize(num: number): number {

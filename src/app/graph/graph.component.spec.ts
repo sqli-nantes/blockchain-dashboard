@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Output, EventEmitter }    from '@angular/core';
 
-import { MainComponent } from './main.component';
+import { GraphComponent } from './graph.component';
 
 import { AppService } from '../app.service';
 
@@ -32,21 +32,20 @@ class MockAppService {
 
 describe('BlockDash tests', () => {
 
-  describe('Testing Component app', () => {
+  describe('Testing Component Graph', () => {
 
-    let component: MainComponent;
+    let component: GraphComponent;
     let element;
     let fixture;
 
     beforeEach((done) => {
       TestBed.configureTestingModule( {
-        declarations: [MainComponent]
+        declarations: [GraphComponent]
       });
 
       // Override du template
-      TestBed.overrideComponent(MainComponent, {
+      TestBed.overrideComponent(GraphComponent, {
         set: {
-          template: '<div *ngFor="let t of transactions">{{t}}</div>',
           providers: [
             { provide: AppService, useClass: MockAppService }
           ]
@@ -54,7 +53,7 @@ describe('BlockDash tests', () => {
       });
 
       TestBed.compileComponents().then(() => {
-        fixture = TestBed.createComponent(MainComponent);
+        fixture = TestBed.createComponent(GraphComponent);
 
         // Access the dependency injected component instance
         component = fixture.componentInstance;
@@ -66,24 +65,12 @@ describe('BlockDash tests', () => {
         fixture.detectChanges();
         done();
       });
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
     });
 
     it('can be initialized', () => {
       expect(component).not.toBeNull();
       expect(element).not.toBeNull();
-    });
-
-    describe('testing component.randomize()', () => {
-      it('shoud return a number less than 10 and greater than -1', () => {
-        expect(component.randomize(10)).toBeLessThan(11);
-        expect(component.randomize(10)).toBeGreaterThan(-1);
-      });
-    });
-
-    describe('testing ngOnInit', () => {
-      it('shoud return a boolean on the demo var', () => {
-        expect(component.demo).toBe(true);
-      });
     });
   });
 });
