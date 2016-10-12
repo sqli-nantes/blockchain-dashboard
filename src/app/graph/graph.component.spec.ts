@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+/*import { TestBed } from '@angular/core/testing';
 import { Output, EventEmitter }    from '@angular/core';
 
 import { GraphComponent } from './graph.component';
@@ -75,4 +75,4 @@ describe('BlockDash tests', () => {
       expect(element).not.toBeNull();
     });
   });
-});
+});*/
