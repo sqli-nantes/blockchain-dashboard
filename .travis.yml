@@ -16,3 +16,10 @@ install:
 
 script:
 - npm run test && npm run build
+
+notifications:
+  slack:
+    on_success: change
+    on_failure: always
+    rooms:
+      - sqlinantes:8Usex84M6JTsUhBEymvhpm5w#team-blockchain
