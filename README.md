@@ -73,7 +73,7 @@ In order to build the docker image :
 
 In order to run the docker image :
 
-* 
+* `docker run -d -p 8080:8080 -p 80:80 -p 443:443 dashboard-docker-test`
 
 ### Build and DNS
 
