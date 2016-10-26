@@ -65,6 +65,23 @@ For the **name** configuration, go to `block-dash/src/public/res/json/name.json`
 
 For **IP** of the configuration, go to `block-dash/src/public/res/json/ipRPI.json`.
 
+## Docker
+
+In order to build the docker image :
+
+* `docker build -t dashboard-docker .` (Don't forget the dot)
+
+In order to run the docker image :
+
+* 
+
+### Build and DNS
+
+Sometimes your network doesn't permit you to build your docker with a internet connection. My way to by-pass it was :
+
+* Know the DNS IPs on my host with `nmcli device show <interfacename> | grep IP4.DNS` on Ubuntu >= 15.04 (mine 16.04)
+* Modify the **docker-build-install.sh** script in order to have one line per DNS IP like `echo "nameserver <MY_DNS_IP>" >> /etc/resolv.conf` at the beginning of the file.
+
 # Modes
 
 ## BlockChain Mode
@@ -74,6 +91,10 @@ For the BlockChain mode check at `http://localhost:8080`. Ensure you have change
 ## Demo Mode
 
 For the Demo mode check at `http://localhost:8080/demo`. A logo in the bottom right will appear.
+
+## Offline Mode
+
+Run the docker image in order to allow access to the offline mode
 
 # Progress
 
@@ -85,13 +106,13 @@ For the Demo mode check at `http://localhost:8080/demo`. A logo in the bottom ri
 * Graphics.
 * Animated list.
 * Continuous integration with Travis-ci.
+* Cut the internet access.
 
 ## DO
 
 * Documentation.
-* Cut the internet access.
+* Docker
 
 ## TODO
 
 * Unit tests.
-* Docker
