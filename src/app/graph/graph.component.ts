@@ -16,12 +16,16 @@ declare var google: any;
 @Component({
   selector: 'graph',
   styleUrls: ['./_graph.scss'],
-  template: `
-    <div class="chart" >
-        <div [attr.id]="'chart' + user.name"></div>
-    </div>
-  `
+  templateUrl: './graph.html'
 })
+
+// ,
+//   template: `
+//     <div class="chart" >
+//         <p>{{user.address}}</p>
+//         <div [attr.id]="'chart' + user.name"></div>
+//     </div>
+//   `
 
 export class GraphComponent extends OnInit {
   private googleLoaded: any;
@@ -64,6 +68,8 @@ export class GraphComponent extends OnInit {
     let firstRow = [];
     let table = [];
 
+    console.log(this.user.name);
+
     table.push('Date');
     table =  _.concat(table, this.user['name']);
 
@@ -77,6 +83,7 @@ export class GraphComponent extends OnInit {
       table,
       firstRow
     ]);
+    console.log('Looking for chart' + this.user.name);
     this.chart = this.createLineChart(document.getElementById('chart' + this.user.name));
     this.chart.draw(this.data, this.options);
   }
