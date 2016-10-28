@@ -64,6 +64,7 @@ And you are all set! You can now modify your components on the fly without havin
 For the **name** configuration, go to `block-dash/src/public/res/json/name.json`.
 
 For **IP** of the configuration, go to `block-dash/src/public/res/json/ipRPI.json`.
+Default is http://bootnode:8547
 
 ## Docker
 
@@ -73,7 +74,7 @@ In order to build the docker image :
 
 In order to run the docker image :
 
-* `docker run -d -p 8080:8080 -p 80:80 -p 443:443 dashboard-docker-test`
+* `docker run -d -p 8080:8080 -p 80:80 -p 443:443 dashblock`
 
 ### Build and DNS
 
@@ -95,6 +96,8 @@ For the Demo mode check at `http://localhost:8080/demo`. A logo in the bottom ri
 ## Offline Mode
 
 Run the docker image in order to allow access to the offline mode
+You can get the certificate in the container at : /home/httpserver/offline_mode/certificates/certificate.cert
+Look up for `docker exec MYCONTAINER cat /home/httpserver/offline_mode/certificates/certificate.crt` where MYCONTAINER is the reference to the container (Name or ID)
 
 # Progress
 

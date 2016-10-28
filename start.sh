@@ -1,19 +1,20 @@
 cd "$1/offline_chart"
 
+# Redirect online libs to localhost
 ./insertRedirectionInEtcHosts.sh
 
+# Generate certificates for HTTPS server
+./generateCertificate.sh
+
+# Start HTTP server
 ./startServer.sh &
 
-#sleep 3
-
+# Start HTTPS server
 ./startHttpsServer.sh &
-
-#sleep 3
 
 cd ..
 
-npm rebuild node-saas
-
+# Start the dashboard
 npm start &
 
-while true; do sleep 1000; wget localhost:8080; done
+while true; do sleep 1000; done
