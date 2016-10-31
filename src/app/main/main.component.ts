@@ -139,12 +139,22 @@ export class MainComponent implements AfterViewInit, OnInit {
 
     // User unknown, look for an empty place
     if (indexSender === -1) {
-        this.users.push(sender);
+        let u = new User();
+        u.name = sender.name;
+        u.address = sender.address;
+        u.balance = 0;
+        this.users.push(u);
     }
 
     if (indexReceiver === -1) {
-        this.users.push(receiver);
+        let u = new User();
+        u.name = receiver.name;
+        u.address = receiver.address;
+        u.balance = 0;
+        this.users.push(u);
     }
+
+    this.users.push(this.users[0]);
 
 
     this.transaction = this.appService.parseObj({

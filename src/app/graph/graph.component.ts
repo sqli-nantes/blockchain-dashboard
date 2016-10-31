@@ -68,7 +68,7 @@ export class GraphComponent extends OnInit {
     let firstRow = [];
     let table = [];
 
-    console.log(this.user.name);
+    console.log(this.user);
 
     table.push('Date');
     table =  _.concat(table, this.user['name']);
