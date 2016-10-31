@@ -1,0 +1,9 @@
+{
+    name: "choupette",
+    manufacturer: "Volkswagen",
+    model: "Coccinelle",
+    contract: {
+        abi: "foo",
+            address: "bar"
+    }
+}
