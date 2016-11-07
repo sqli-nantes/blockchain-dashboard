@@ -114,47 +114,47 @@ export class MainComponent implements AfterViewInit, OnInit {
       balance: Number(web3.eth.getBalance(transac.to).plus(2).toString(10)) / Math.pow(10, 18)
     }, User);
 
-    this.appService.getName(sender).then(name => {
-      sender.name = name;
-    }, name => {
-   });
-    this.appService.getName(receiver).then(name => {
-      receiver.name = name;
-    }, name => {
-   });
+   //  this.appService.getName(sender).then(name => {
+   //    sender.name = name;
+   //  }, name => {
+   // });
 
-    if(sender.name=='')
-     sender.name = 'UserNb' + this.users.length;
-
-    if(receiver.name=='')
-     receiver.name = 'UserNB' + this.users.length;
-
-     
     let indexSender = _.findIndex(this.users, ['address', sender.address]);
-    let indexReceiver = _.findIndex(this.users, ['address', receiver.address]);
 
-    console.log("s:" + sender.name);
-    console.log("r:" + receiver.name);
-
+    console.log("indexSender:" + indexSender + " for " + sender.name);
 
     // User unknown, look for an empty place
     if (indexSender === -1) {
         let u = new User();
-        u.name = sender.name;
+        u.name = 'UserNb' + this.users.length;
+        sender.name = u.name;
         u.address = sender.address;
         u.balance = 0;
         this.users.push(u);
     }
+    else
+        sender.name = this.users[indexSender]['name'];
+
+
+   //  this.appService.getName(receiver).then(name => {
+   //    receiver.name = name;
+   //  }, name => {
+   // });
+
+    let indexReceiver = _.findIndex(this.users, ['address', receiver.address]);
+
+    console.log("indexReceiver:" + indexReceiver + " for " + receiver.name);
 
     if (indexReceiver === -1) {
         let u = new User();
-        u.name = receiver.name;
+        u.name = 'UserNb' + this.users.length;
+        receiver.name = u.name;
         u.address = receiver.address;
         u.balance = 0;
         this.users.push(u);
     }
-
-    this.users.push(this.users[0]);
+    else
+        receiver.name = this.users[indexReceiver]['name'];
 
 
     this.transaction = this.appService.parseObj({
@@ -163,7 +163,6 @@ export class MainComponent implements AfterViewInit, OnInit {
       amount: transac.value.c[0],
       time: new Date()
     }, Transaction);
-
 
     this.newBalance(this.transaction);
 

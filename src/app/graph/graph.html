@@ -1,3 +1,5 @@
 <div class="chart" >
-    <div [attr.id]="'chart' + user.name"></div>
+    <div [attr.class]="'chart' + user.name">
+    <p class="userBalance">{{user.name}} : {{user.balance}}</p>
+    </div>
 </div>

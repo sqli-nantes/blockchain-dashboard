@@ -11,6 +11,11 @@ import { AppService } from '../app.service';
 
 import { Transaction } from '../class/Transaction';
 import * as _ from 'lodash';
+
+
+let web3 = require('../utils/web3IPCExtension').web3;
+
+
 declare var google: any;
 
 @Component({
@@ -18,14 +23,6 @@ declare var google: any;
   styleUrls: ['./_graph.scss'],
   templateUrl: './graph.html'
 })
-
-// ,
-//   template: `
-//     <div class="chart" >
-//         <p>{{user.address}}</p>
-//         <div [attr.id]="'chart' + user.name"></div>
-//     </div>
-//   `
 
 export class GraphComponent extends OnInit {
   private googleLoaded: any;
@@ -44,14 +41,17 @@ export class GraphComponent extends OnInit {
 
   // Initialisation des packages au lancement du composant et souscription à l'évennement de nouvelle transaction
   ngOnInit() {
-    if (!this.googleLoaded) {
-      this.googleLoaded = true;
-      google.charts.load('current', {packages: ['corechart', 'line']});
-    }
-    google.charts.setOnLoadCallback(() => {
-      this.drawGraph();
-    });
-    this.service.newTransac.subscribe(transaction => this.updateChart(transaction));
+    // if (!this.googleLoaded) {
+    //   this.googleLoaded = true;
+    //   google.charts.load('current', {packages: ['corechart', 'line']});
+    // }
+    // google.charts.setOnLoadCallback(() => {
+    //   this.drawGraph();
+    // });
+
+    this.addUser();
+
+    this.service.newTransac.subscribe(transaction => this.updateUser(transaction));
   }
 
   // Création du graphique en lignes
@@ -63,50 +63,61 @@ export class GraphComponent extends OnInit {
       return google.visualization.arrayToDataTable(array);
   }
 
-  // Initialisation du Graph
-  drawGraph() {
-    let firstRow = [];
-    let table = [];
-
-    console.log(this.user);
-
-    table.push('Date');
-    table =  _.concat(table, this.user['name']);
-
-    this.options = OPTIONS;
-    this.options.title = this.user['name'];
-
-    firstRow = [new Date().toLocaleTimeString(), this.user['balance']];
-
-
-    this.data = this.createDataTable([
-      table,
-      firstRow
-    ]);
-    console.log('Looking for chart' + this.user.name);
-    this.chart = this.createLineChart(document.getElementById('chart' + this.user.name));
-    this.chart.draw(this.data, this.options);
+  addUser() {
+    this.service.getIp().then(ip => {
+      web3.setProvider(new web3.providers.HttpProvider(ip[0]['ip']));
+      this.user['balance'] = Number(web3.eth.getBalance(this.user['address']).plus(2).toString(10)) / Math.pow(10, 18)
+    });
   }
 
-  // Quand une nouvelle transaction arrive, on update le graph.
-  updateChart (transaction: Transaction) {
-    let newData = [];
-    let newBalances = [];
+  updateUser (transaction: Transaction) {
 
-    newBalances = this.user['balance'];
-    this.options.title = this.user['name'];
-
-    newData = [transaction.time.toLocaleTimeString()];
-    newData[0] = _.concat(newData, newBalances);
-
-    // now add the rows.
-    this.data.addRows(newData);
-
-    if (this.data.getNumberOfRows() > 5) {
-      this.data.removeRow(0);
-    }
-
-    // redraw the chart.
-    this.chart.draw(this.data, this.options);
   }
+
+  // // Initialisation du Graph
+  // drawGraph() {
+  //   let firstRow = [];
+  //   let table = [];
+
+  //   console.log(this.user);
+
+  //   table.push('Date');
+  //   table =  _.concat(table, this.user['name']);
+
+  //   this.options = OPTIONS;
+  //   this.options.title = this.user['name'];
+
+  //   firstRow = [new Date().toLocaleTimeString(), this.user['balance']];
+
+
+  //   this.data = this.createDataTable([
+  //     table,
+  //     firstRow
+  //   ]);
+  //   console.log('Looking for chart' + this.user.name);
+  //   this.chart = this.createLineChart(document.getElementById('chart' + this.user.name));
+  //   this.chart.draw(this.data, this.options);
+  // }
+
+  // // Quand une nouvelle transaction arrive, on update le graph.
+  // updateChart (transaction: Transaction) {
+  //   let newData = [];
+  //   let newBalances = [];
+
+  //   newBalances = this.user['balance'];
+  //   this.options.title = this.user['name'];
+
+  //   newData = [transaction.time.toLocaleTimeString()];
+  //   newData[0] = _.concat(newData, newBalances);
+
+  //   // now add the rows.
+  //   this.data.addRows(newData);
+
+  //   if (this.data.getNumberOfRows() > 5) {
+  //     this.data.removeRow(0);
+  //   }
+
+  //   // redraw the chart.
+  //   this.chart.draw(this.data, this.options);
+  // }
 }
