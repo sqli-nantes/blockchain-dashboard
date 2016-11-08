@@ -105,14 +105,22 @@ export class MainComponent implements AfterViewInit, OnInit {
     sender = this.appService.parseObj({
       address: transac.from,
       name: '',
-      balance: Number(web3.eth.getBalance(transac.from).plus(2).toString(10)) / Math.pow(10, 18)
+      balance: Number(web3.eth.getBalance(transac.from).plus(2).toString()) / Math.pow(10, 18)
     }, User);
+
+    if(sender.balance < (1/Math.pow(10,17)))
+      sender.balance = 0;
 
     receiver = this.appService.parseObj({
       address: transac.to,
       name: '',
-      balance: Number(web3.eth.getBalance(transac.to).plus(2).toString(10)) / Math.pow(10, 18)
+      balance: Number(web3.eth.getBalance(transac.to).plus(2).toString()) / Math.pow(10, 18)
     }, User);
+
+    if(receiver.balance < (1/Math.pow(10,17)))
+      receiver.balance = 0;
+
+
 
    //  this.appService.getName(sender).then(name => {
    //    sender.name = name;

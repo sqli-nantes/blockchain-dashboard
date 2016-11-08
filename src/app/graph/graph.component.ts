@@ -66,7 +66,8 @@ export class GraphComponent extends OnInit {
   addUser() {
     this.service.getIp().then(ip => {
       web3.setProvider(new web3.providers.HttpProvider(ip[0]['ip']));
-      this.user['balance'] = Number(web3.eth.getBalance(this.user['address']).plus(2).toString(10)) / Math.pow(10, 18)
+      this.user['balance'] = Number(web3.eth.getBalance(this.user['address']).plus(2).toString()) / Math.pow(10, 18)
+      if(this.user['balance'] < (1/Math.pow(10,17))) this.user['balance'] = 0;
     });
   }
 
