@@ -85,13 +85,13 @@ For the Demo mode check at `http://localhost:8080/demo`. A logo in the bottom ri
 * Graphics.
 * Animated list.
 * Continuous integration with Travis-ci.
+* Cut the internet access
 
-## DO
+## IN PROGRESS
 
-* Documentation.
-* Cut the internet access.
+* Documentation
+* Docker image
 
 ## TODO
 
-* Unit tests.
-* Docker
+* More unit tests
