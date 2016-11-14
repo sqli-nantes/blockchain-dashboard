@@ -11,7 +11,7 @@
 			<td>Solde</td><td>{{user.balance | number:'1.0-4'}}</td><td>ether(s)</td>
 		</tr>
 		<tr>
-			<td>Delta</td><td>{{balance.amount}}</td><td>ether(s)</td>
+			<td>Delta</td><td>{{balance.amount | number:'1.0-18'}}</td><td>ether(s)</td>
 		</tr>
 		<tr>
 			<td>Frais</td><td>{{balance.gas/1000000000 | number:'1.0-4'}}</td><td>nano ether(s)</td>

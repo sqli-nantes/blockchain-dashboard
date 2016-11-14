@@ -76,6 +76,8 @@ export class GraphComponent extends OnInit {
     if(transaction.receiver.address == this.user.address)
       this.balance.amount += transaction.amount;
     if(transaction.sender.address == this.user.address)
+      this.balance.amount -= transaction.amount;
+    if(transaction.sender.address == this.user.address)
       this.balance.gas += transaction.gasPrice * transaction.gasUsed;
 
     //this.user['balance'] = Number(web3.eth.getBalance(this.user['address']).plus(2).toString()) / Math.pow(10, 18);

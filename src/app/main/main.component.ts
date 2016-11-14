@@ -165,11 +165,11 @@ export class MainComponent implements AfterViewInit, OnInit {
     else
         receiver.name = this.users[indexReceiver]['name'];
 
-
+      //Number(transac.value.div(Math.pow(10,18)).toString(10))
     this.transaction = this.appService.parseObj({
       sender: sender,
       receiver: receiver,
-      amount: Number(transac.value.div(Math.pow(10,18)).toString(10)),
+      amount: Number(transac.value.toString(10)) / Math.pow(10, 18),
       time: new Date(),
       gasPrice: transac.gas,
       gasUsed: receipt.cumulativeGasUsed
