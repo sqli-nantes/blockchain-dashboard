@@ -85,7 +85,8 @@ export class MainComponent implements AfterViewInit, OnInit {
           let receipt = web3.eth.getTransactionReceipt(transac.hash);
           if (receipt) {
             console.log('On parse la transaction');
-            this.parseTransac(transac);
+            console.log(transac);
+            this.parseTransac(transac, receipt);
           }
         }
       } else {
@@ -98,7 +99,7 @@ export class MainComponent implements AfterViewInit, OnInit {
 
   /* Fonction de parsing d'un block de transaction en objet de class 'Transaction' et 'User' et recuperation des noms des 
   utilisateur dans un fichier externe*/
-  parseTransac (transac: any) {
+  parseTransac (transac: any, receipt: any) {
     let sender: User = null;
     let receiver: User = null;
 
@@ -168,8 +169,10 @@ export class MainComponent implements AfterViewInit, OnInit {
     this.transaction = this.appService.parseObj({
       sender: sender,
       receiver: receiver,
-      amount: transac.value.c[0],
-      time: new Date()
+      amount: Number(transac.value.div(Math.pow(10,18)).toString(10)),
+      time: new Date(),
+      gasPrice: transac.gas,
+      gasUsed: receipt.cumulativeGasUsed
     }, Transaction);
 
     this.newBalance(this.transaction);
