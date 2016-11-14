@@ -64,12 +64,13 @@ And you are all set! You can now modify your components on the fly without havin
 For the **name** configuration, go to `block-dash/src/public/res/json/name.json`.
 
 For **IP** of the configuration, go to `block-dash/src/public/res/json/ipRPI.json`.
-Default is http://bootnode:8547
+Default is http://10.33.44.222:8547
 
 ## Docker
 
 In order to build the docker image :
 
+* `cd dash-block`
 * `docker build -t dashboard-docker .` (Don't forget the dot)
 
 In order to run the docker image :
@@ -91,7 +92,7 @@ For the BlockChain mode check at `http://localhost:8080`. Ensure you have change
 
 ## Demo Mode
 
-For the Demo mode check at `http://localhost:8080/demo`. A logo in the bottom right will appear.
+For the Demo mode check at `http://localhost:8080/demo`. A logo in the bottom right will appear, telling it's the demo mode.
 
 ## Offline Mode
 
@@ -114,7 +115,7 @@ Look up for `docker exec MYCONTAINER cat /home/httpserver/offline_mode/certifica
 ## DO
 
 * Documentation.
-* Docker
+* Docker.
 
 ## TODO
 
