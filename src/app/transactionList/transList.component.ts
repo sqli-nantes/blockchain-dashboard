@@ -39,6 +39,7 @@ export class TransListComponent implements OnInit {
   // Fonction d'animation de l'apparition d'une nouvelle transaction
   addStat (transaction: Transaction): void {
     this.addTransaction(transaction);
+    console.log(transaction);
 
     setTimeout(() => {
       TweenMax.to('.ui:first-child', 0.6, {height: 0, reversed: true, ease: Sine.easeOut});

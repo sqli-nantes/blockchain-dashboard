@@ -1,5 +1,22 @@
 <div class="chart" >
     <div [attr.class]="'chart' + user.name">
-    <p class="userBalance">{{user.name}} : <br/> {{user.balance}}</p>
+    <p class="userBalance">{{user.name}} : 
+	    <!--<br/>{{user.balance | number:'1.0-4'}} ether(s)
+	    <br/>{{balance.amount}} ether(s)
+	    <br/>{{balance.gas/1000000000 | number:'1.0-4'}} nanoEther(s)-->
+	</p>
+
+	<table class="userBalance">
+		<tr>
+			<td>Solde</td><td>{{user.balance | number:'1.0-4'}}</td><td>ether(s)</td>
+		</tr>
+		<tr>
+			<td>Delta</td><td>{{balance.amount}}</td><td>ether(s)</td>
+		</tr>
+		<tr>
+			<td>Frais</td><td>{{balance.gas/1000000000 | number:'1.0-4'}}</td><td>nano ether(s)</td>
+		</tr>
+	</table>
+
     </div>
 </div>

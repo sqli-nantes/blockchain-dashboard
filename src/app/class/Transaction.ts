@@ -7,4 +7,6 @@ export class Transaction {
     sender: User;
     amount: number;
     time: Date;
+    gasPrice: number;
+    gasUsed: number;
 }

@@ -13,3 +13,24 @@
 	/*font-size : 1.5em;*/
 	font-weight : bold;
 }
+
+
+
+table.userBalance, table.userBalance tr
+{
+	font-size : 0.75em;
+	width : 95%;
+	text-align: right;
+	margin: auto;
+}
+
+table.userBalance td
+{
+	width : 30%;
+}
+
+table.userBalance tr td:first-child
+{
+	text-align: left;
+}
+
