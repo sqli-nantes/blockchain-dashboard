@@ -73,10 +73,10 @@ export class GraphComponent extends OnInit {
   }
 
   updateUser (transaction: Transaction) {
-    if(transaction.receiver.address == this.user.address)
-      this.balance.amount += transaction.amount;
-    if(transaction.sender.address == this.user.address)
-      this.balance.amount -= transaction.amount;
+    if(transaction.receiver.address == this.user.address && transaction.amount!=0)
+      this.balance.amount = transaction.amount;
+    if(transaction.sender.address == this.user.address && transaction.amount!=0)
+      this.balance.amount = -transaction.amount;
     if(transaction.sender.address == this.user.address)
       this.balance.gas += transaction.gasPrice * transaction.gasUsed;
 
