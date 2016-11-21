@@ -2,7 +2,7 @@
 	<div class="ui_box">  
 		<div id="timestamp_transac">{{t.time|date: 'yyyy-MM-dd HH:mm:ss'}}</div>
 		<h2 class='left'>{{t.sender.name}}</h2>
-		<!--div class='amount'>{{t.amount}}</div-->
+		<div class='amount' *ngIf="t.amount != 0">{{t.amount}}</div>
 		<div class="ico animated"> 
 			<img src="./res/img/arrow.svg">
 		</div>

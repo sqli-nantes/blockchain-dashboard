@@ -30,7 +30,7 @@ export class GraphComponent extends OnInit {
   private data;
   private chart;
   @Input() user;
-  @Input() balance = {amount:0,gas:0};
+  @Input() balance = {amount:0,gas:0,count:0};
 
   constructor (private service: AppService) {
     super();
@@ -75,10 +75,15 @@ export class GraphComponent extends OnInit {
   updateUser (transaction: Transaction) {
     if(transaction.receiver.address == this.user.address && transaction.amount!=0)
       this.balance.amount = transaction.amount;
-    if(transaction.sender.address == this.user.address && transaction.amount!=0)
+    else if(transaction.sender.address == this.user.address && transaction.amount!=0)
       this.balance.amount = -transaction.amount;
+    else
+      this.balance.amount = 0;
     if(transaction.sender.address == this.user.address)
-      this.balance.gas += transaction.gasPrice * transaction.gasUsed;
+    {
+      this.balance.gas = transaction.gasPrice * transaction.gasUsed;
+      this.balance.count += 1;
+    }
 
     //this.user['balance'] = Number(web3.eth.getBalance(this.user['address']).plus(2).toString()) / Math.pow(10, 18);
   }

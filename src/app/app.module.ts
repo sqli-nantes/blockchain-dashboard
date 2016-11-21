@@ -21,6 +21,8 @@ import { GraphComponent }  from './graph/graph.component';
 import { AppService } from './app.service';
 import { NameService } from './name/name.service';
 
+import { NumberLocale } from './pipes/NumberLocale.pipe';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { NameService } from './name/name.service';
     MainComponent,
     TabGraphComponent,
     GraphComponent,
-    TransListComponent
+    TransListComponent,
+    NumberLocale
   ],
   providers: [
     AppService,
