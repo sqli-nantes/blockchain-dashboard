@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'block-dashboard',
-  template: `<router-outlet id="ui_container">Loading...</router-outlet>`
+  template: `<router-outlet id="ui_container"></router-outlet>`
 })
 
 export class AppComponent {

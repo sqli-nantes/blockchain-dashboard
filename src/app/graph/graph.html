@@ -1,20 +1,28 @@
 <div class="chart" >
     <div [attr.class]="'chart' + user.name">
-    <p class="userBalance">{{user.name}} : 
-	    <!--<br/>{{user.balance | number:'1.0-4'}} ether(s)
+    <!--p class="userBalance">
+	    <br/>{{user.balance | number:'1.0-4'}} ether(s)
 	    <br/>{{balance.amount}} ether(s)
-	    <br/>{{balance.gas/1000000000 | number:'1.0-4'}} nanoEther(s)-->
-	</p>
+	    <br/>{{balance.gas/1000000000 | number:'1.0-4'}} nanoEther(s)>
+	</p-->
 
 	<table class="userBalance">
 		<tr>
-			<td>Solde</td><td>{{user.balance | number:'1.0-4'}}</td><td>ether(s)</td>
+			<td>{{user.name}}</td>
+			<td>
+					<!--{{user.balance | number:'1.0-4'}} -->
+					{{user.balance | numberLocale:'fr-FR'}}
+					<span class="arrow" *ngIf="balance.amount < 0">&#8600;</span>
+					<span class="arrow" *ngIf="balance.amount > 0">&#8599;</span>
+			</td>
 		</tr>
-		<tr>
-			<td>Delta</td><td>{{balance.amount | number:'1.0-18'}}</td><td>ether(s)</td>
+		<tr *ngIf="balance.amount != 0">
+			<td>Variation</td>
+			<td [ngStyle]="{color : (balance.amount>0) ? 'green' : ((balance.amount < 0) ? 'red' : 'inherit')}">{{balance.amount | number:'1.0-18'}} </td>
 		</tr>
-		<tr>
-			<td>Frais</td><td>{{balance.gas / 1000000000000000 | number:'1.0-4'}}</td><td>milliether(s)</td>
+		<tr *ngIf="balance.gas > 0">
+			<td>Frais</td>
+			<td>{{-balance.gas / 1000000000000000000 | number:'1.0-8'}} </td>
 		</tr>
 	</table>
 
