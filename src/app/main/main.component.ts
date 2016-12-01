@@ -217,18 +217,27 @@ export class MainComponent implements AfterViewInit, OnInit {
   }
 
   newBalance (transaction: Transaction, reset = 0) {
-    // let indexSender = _.findIndex(this.users, ['address', transaction.sender.address]);
-    // let indexReceiver = _.findIndex(this.users, ['address', transaction.receiver.address]);
+/*
+    let indexSender = _.findIndex(this.users, ['address', transaction.sender.address]);
+    let indexReceiver = _.findIndex(this.users, ['address', transaction.receiver.address]);
 
-    // this.users[indexSender].balance = transaction.sender.balance - reset;
-    // this.users[indexReceiver].balance = transaction.receiver.balance - reset;
+    this.users[indexSender].balance = transaction.sender.balance - reset;
+    this.users[indexReceiver].balance = transaction.receiver.balance - reset;
+*/
+    /*
+	var accounts = web3.eth.accounts;
 
-    var accounts = web3.eth.accounts;
+    this.getAllUsers();
 
     for (var i = 0; i < accounts.length; ++i) {
-      var b = Number(web3.eth.getBalance(accounts[i]).plus(2).toString()) / Math.pow(10, 18);
       let index = _.findIndex(this.users, ['address', accounts[i]]);
-      this.users[index].balance = b;
-    }
+
+	if(index>=0)
+	{
+		console.log("Try balance " + accounts[i]);
+		var b = Number(web3.eth.getBalance(accounts[i]).plus(2).toString()) / Math.pow(10, 18);
+		this.users[index].balance = b;
+	}
+    }//*/
   }
 }

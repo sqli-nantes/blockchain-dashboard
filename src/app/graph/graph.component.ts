@@ -84,8 +84,10 @@ export class GraphComponent extends OnInit {
       this.balance.gas = transaction.gasPrice * transaction.gasUsed;
       this.balance.count += 1;
     }
+    else
+      this.balance.gas = 0
 
-    //this.user['balance'] = Number(web3.eth.getBalance(this.user['address']).plus(2).toString()) / Math.pow(10, 18);
+    this.user['balance'] = Number(web3.eth.getBalance(this.user['address']).plus(2).toString()) / Math.pow(10, 18);
   }
 
   // // Initialisation du Graph
