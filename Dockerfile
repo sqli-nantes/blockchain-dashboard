@@ -3,13 +3,11 @@ FROM ubuntu:16.04
 RUN mkdir -p /home/httpserver
 
 COPY ./package.json /home/httpserver/package.json
-COPY ./docker-build-install.sh /home/httpserver/docker-build-install.sh
 
-RUN chmod -R 777 /home/httpserver/*
+RUN apt-get update \
+	&& apt-get install -y nodejs npm wget nodejs-legacy git
 
-RUN chmod +x /home/httpserver/docker-build-install.sh
-
-RUN /home/httpserver/docker-build-install.sh /home/httpserver
+RUN cd /home/httpserver && echo "\n\nInstallation des modules NodeJS in" $(pwd) "\n" -- && npm install
 
 COPY ./ /home/httpserver/
 

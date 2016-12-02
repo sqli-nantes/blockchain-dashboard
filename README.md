@@ -75,14 +75,7 @@ In order to build the docker image :
 
 In order to run the docker image :
 
-* `docker run -d -p 8080:8080 -p 80:80 -p 443:443 dashblock`
-
-### Build and DNS
-
-Sometimes your network doesn't permit you to build your docker with a internet connection. My way to by-pass it was :
-
-* Know the DNS IPs on my host with `nmcli device show <interfacename> | grep IP4.DNS` on Ubuntu >= 15.04 (mine 16.04)
-* Modify the **docker-build-install.sh** script in order to have one line per DNS IP like `echo "nameserver <MY_DNS_IP>" >> /etc/resolv.conf` at the beginning of the file.
+* `docker run -d -p 8080:8080 -p 80:80 -p 443:443 -v pathToBootnode/names.json:/home/httpserver/src/public/res/json/names.json dashblock`
 
 # Modes
 
