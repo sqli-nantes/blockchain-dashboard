@@ -29,6 +29,8 @@ export class GraphComponent extends OnInit {
   private options;
   private data;
   private chart;
+  private lastValue = 0;
+  @Input() delta = 0;
   @Input() user;
   @Input() balance = {amount:0,gas:0,count:0};
 
@@ -69,12 +71,16 @@ export class GraphComponent extends OnInit {
       web3.setProvider(new web3.providers.HttpProvider(ip[0]['ip']));
       this.user['balance'] = Number(web3.eth.getBalance(this.user['address']).plus(2).toString()) / Math.pow(10, 18)
       if(this.user['balance'] < (1/Math.pow(10,17))) this.user['balance'] = 0;
+
+      this.delta = 0;
+
+      this.lastValue = this.user['balance'];
     });
   }
 
   updateUser (transaction: Transaction) {
     if(transaction.receiver.address == this.user.address && transaction.amount!=0)
-      this.balance.amount = transaction.amount;
+      this.balance.amount = transaction.amount; 
     else if(transaction.sender.address == this.user.address && transaction.amount!=0)
       this.balance.amount = -transaction.amount;
     else
@@ -88,6 +94,10 @@ export class GraphComponent extends OnInit {
       this.balance.gas = 0
 
     this.user['balance'] = Number(web3.eth.getBalance(this.user['address']).plus(2).toString()) / Math.pow(10, 18);
+
+    this.delta = (this.user['balance'] > this.lastValue) ? 1 : ( (this.user['balance'] < this.lastValue) ? -1 : 0 );
+
+    this.lastValue = this.user['balance'];
   }
 
   // // Initialisation du Graph
