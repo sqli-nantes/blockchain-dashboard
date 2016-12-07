@@ -5,3 +5,60 @@
 #chart_divEvolution{
 	@extend .chart;
 }
+
+.userBalance
+{
+	color : #ffe3ac;
+	font-family: Arial, "Helvetica Neue", sans-serif;
+	/*font-size : 1.5em;*/
+	font-weight : bold;
+}
+
+
+
+table.userBalance, table.userBalance tr
+{
+	font-size : 1em;
+	width : 95%;
+	text-align: right;
+	margin: auto;
+}
+
+table.userBalance td
+{
+	width : 30%;
+}
+
+table.userBalance tr td:first-child
+{
+	text-align: left;
+}
+
+table.userBalance tr:first-child
+{
+	font-size : 1.5em;
+	border-bottom : 1px #ffe3ac solid;
+}
+
+table.userBalance tr:not(:first-child)
+{
+	font-style: italic;
+	font-weight: normal;
+	color: #ceb584;
+}
+
+.arrow
+{
+	/*font-size : 2em;*/
+	font-weight: bold;	
+}
+
+.green
+{
+	color : green;
+}
+
+.red
+{
+	color: red;
+}

@@ -64,6 +64,18 @@ And you are all set! You can now modify your components on the fly without havin
 For the **name** configuration, go to `block-dash/src/public/res/json/name.json`.
 
 For **IP** of the configuration, go to `block-dash/src/public/res/json/ipRPI.json`.
+Default is http://10.33.44.222:8547
+
+## Docker
+
+In order to build the docker image :
+
+* `cd dash-block`
+* `docker build -t dashboard-docker .` (Don't forget the dot)
+
+In order to run the docker image :
+
+* `docker run -d -p 8080:8080 -p 80:80 -p 443:443 -v pathToBootnode/names.json:/home/httpserver/src/public/res/json/names.json dashblock`
 
 # Modes
 
@@ -73,7 +85,13 @@ For the BlockChain mode check at `http://localhost:8080`. Ensure you have change
 
 ## Demo Mode
 
-For the Demo mode check at `http://localhost:8080/demo`. A logo in the bottom right will appear.
+For the Demo mode check at `http://localhost:8080/demo`. A logo in the bottom right will appear, telling it's the demo mode.
+
+## Offline Mode
+
+Run the docker image in order to allow access to the offline mode
+You can get the certificate in the container at : /home/httpserver/offline_mode/certificates/certificate.cert
+Look up for `docker exec MYCONTAINER cat /home/httpserver/offline_mode/certificates/certificate.crt` where MYCONTAINER is the reference to the container (Name or ID)
 
 # Progress
 
@@ -85,12 +103,12 @@ For the Demo mode check at `http://localhost:8080/demo`. A logo in the bottom ri
 * Graphics.
 * Animated list.
 * Continuous integration with Travis-ci.
-* Cut the internet access
+* Cut the internet access.
 
 ## IN PROGRESS
 
 * Documentation
-* Docker image
+* Docker.
 
 ## TODO
 
