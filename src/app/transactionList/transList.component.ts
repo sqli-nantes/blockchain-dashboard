@@ -26,6 +26,7 @@ declare let Sine: any;
 export class TransListComponent implements OnInit {
   transactions: Array<Transaction> = [];
   users = [];
+  lastBlocks: Array<Number> = [];
 
   constructor(
     private appService: AppService
@@ -38,6 +39,21 @@ export class TransListComponent implements OnInit {
 
   // Fonction d'animation de l'apparition d'une nouvelle transaction
   addStat (transaction: Transaction): void {
+
+    for (var i = 0; i < this.lastBlocks.length; ++i) {
+      if(transaction.blockHash == this.lastBlocks[i])
+      {
+        console.log("Transaction already known")
+        return;
+      }
+    }
+
+    this.lastBlocks.unshift(transaction.blockHash);
+    if(this.lastBlocks.length >= 10)
+    {
+      this.lastBlocks.pop();
+    }
+
     this.addTransaction(transaction);
     console.log(transaction);
 
