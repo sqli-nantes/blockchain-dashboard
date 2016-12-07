@@ -95,7 +95,11 @@ export class GraphComponent extends OnInit {
 
     this.user['balance'] = Number(web3.eth.getBalance(this.user['address']).plus(2).toString()) / Math.pow(10, 18);
 
-    this.delta = (this.user['balance'] > this.lastValue) ? 1 : ( (this.user['balance'] < this.lastValue) ? -1 : 0 );
+    let diff : any = 0;
+
+    diff = this.user['balance'] - this.lastValue;
+
+    this.delta = (diff > 100) ? 1 : ( (diff < -100) ? -1 : 0 );
 
     this.lastValue = this.user['balance'];
   }
