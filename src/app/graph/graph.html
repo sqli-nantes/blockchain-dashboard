@@ -12,8 +12,8 @@
 			<td>
 					<!--{{user.balance | number:'1.0-4'}} -->
 					{{user.balance | numberLocale:'fr-FR'}}
-					<span class="arrow" *ngIf="balance.amount < 0">&#8600;</span>
-					<span class="arrow" *ngIf="balance.amount > 0">&#8599;</span>
+					<span class="arrow" *ngIf="delta < 0">&#8600;</span>
+					<span class="arrow" *ngIf="delta > 0">&#8599;</span>
 			</td>
 		</tr>
 		<tr *ngIf="balance.amount != 0">

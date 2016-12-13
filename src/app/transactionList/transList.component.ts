@@ -40,6 +40,8 @@ export class TransListComponent implements OnInit {
   // Fonction d'animation de l'apparition d'une nouvelle transaction
   addStat (transaction: Transaction): void {
 
+	console.log(transaction.blockHash);
+
     for (var i = 0; i < this.lastBlocks.length; ++i) {
       if(transaction.blockHash == this.lastBlocks[i])
       {
