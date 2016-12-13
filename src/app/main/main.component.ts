@@ -172,7 +172,8 @@ export class MainComponent implements AfterViewInit, OnInit {
       amount: Number(transac.value.toString(10)) / Math.pow(10, 18),
       time: new Date(),
       gasPrice: Number(transac.gasPrice.toString(10)),
-      gasUsed: receipt.cumulativeGasUsed
+      gasUsed: receipt.cumulativeGasUsed,
+      blockHash: transac.blockHash
     }, Transaction);
 
     this.newBalance(this.transaction);

@@ -9,4 +9,5 @@ export class Transaction {
     time: Date;
     gasPrice: number;
     gasUsed: number;
+    blockHash: number;
 }
