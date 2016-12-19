@@ -11,4 +11,6 @@ RUN cd /home/httpserver && echo "\n\nInstallation des modules NodeJS in" $(pwd) 
 
 COPY ./ /home/httpserver/
 
+EXPOSE 8080
+
 CMD /home/httpserver/start.sh /home/httpserver
