@@ -10,7 +10,7 @@ DashBoard for the Blockchain's transactions.
 
 
 ```bash
-# clone our repo
+# Clone our repo
 $ git clone https://github.com/sqli-nantes/blockchain-dashboard block-dash
 
 # change directory to your app
